@@ -1,0 +1,93 @@
+\section*{Ejercicio 2}
+\graphicspath{{Figuras/ej_02/}}
+
+Tenemos el sistema con dos poblaciones descriptas por un modelo tasa de disparo con una relación f-I semilineal
+\begin{equation}
+    \tau \frac{df_e}{dt} = -f_e + S\left( g_{ee} f_{e} -g_{ei} f_i + I_e \right)
+\end{equation}
+\begin{equation}
+    \tau \frac{df_i}{dt} = -f_i + S\left( g_{ie} f_{e} -g_{ii} f_i + I_i \right)
+    \label{eq:2}
+\end{equation}
+donde $S(f) = f H(f)$, siendo $H$ la función de Heaviside.
+
+Primero queremos ver en que condiciones ocurre que el sistema tiene soluciones  tales que la actividad de las dos poblaciones es distinta de cero. Para esto, primero veamos que sucede si uno de los argumentos de la Heaviside es menor que cero, de manera que el termino $S = 0$. En este caso, la ecuación se reduce a
+\begin{equation}
+    \tau \frac{df_e}{dt} = -f_e 
+\end{equation}
+cuyo único punto fijo es $f_e=0$ y es estable, de manera que no es la solución que nos interesa. De manera que una primer condición es que el argumento de la Heaviside sea mayor que cero, de manera que el segundo termino de la ecuación no se anule. Análogamente podemos ver que la Heaviside de la Ec. \ref{eq:2} no debe ser nula, con lo cual las dos primeras condiciones se resumen en
+\begin{equation}
+    I_e > - g_{ee} f_{e} + g_{ei} f_i
+    \label{02:Condicion_1}
+\end{equation}
+y
+\begin{equation}
+    I_i > - g_{ie} f_{e} + g_{ii} f_i.
+    \label{02:Condicion_2}
+\end{equation}
+en cuyo caso podemos escribir las ecuaciones del sistema como
+\begin{equation}
+    \tau \frac{df_e}{dt} = \left( g_{ee} - 1 \right) f_{e} - g_{ei} f_i + I_e
+\end{equation}
+\begin{equation}
+    \tau \frac{df_i}{dt} = g_{ie} f_{e} - \left( g_{ii} + 1 \right) f_i + I_i
+    \label{eq:20}
+\end{equation}
+
+Busquemos ahora los puntos fijos del sistema. Para esto es util plantear el sistema de forma matricial
+\begin{equation}
+    \tau \frac{d\vec{f}}{dt} = G \vec{f} + \vec{I}
+\end{equation}
+donde
+\begin{equation}
+    G =
+    \begin{pmatrix}
+        g_{ee} - 1  & - g_{ei}      \\ \\
+        g_{ie}      & - g_{ii} - 1 
+    \end{pmatrix},
+    \indent
+    \vec{f} =
+    \begin{pmatrix}
+        f_e  \\ \\
+        f_i       
+    \end{pmatrix},
+    \indent y \indent
+    \vec{I} = 
+    \begin{pmatrix}
+        I_e  \\ \\
+        I_i       
+    \end{pmatrix}.
+\end{equation}
+
+Los puntos fijos del sistema cumplen que $\frac{d\vec{f}}{dt} = 0$, lo cual solo ocurre cuando $G\vec{f} + \vec{I} = 0$. Para que el sistema tenga solución única queremos que el determinante no se anule, en cuyo caso podemos obtener los puntos fijos como
+\begin{equation}
+    \vec{f} = - G^{-1} \vec{I} = \left(\det G\right)^-1
+    \begin{pmatrix}
+        \left(g_{ii} + 1\right) I_{e} -g_{ei} I_{i}          \\ \\
+        g_{ie} I_e - \left( g_{ee} - 1 \right) I_{i}      
+    \end{pmatrix}
+\end{equation}
+con lo cual
+\begin{equation}
+    f_e = \frac{\left(g_{ii} + 1\right) I_{e} -g_{ei} I_{i}}{\det G} \indent f_i = \frac{g_{ie} I_e - \left( g_{ee} - 1 \right) I_{i}}{\det G}
+    \label{02:Puntos_fijos}
+\end{equation}
+
+Para estudiar la estabilidad del punto fijos, necesitamos conocer el signo de la parte real de los autovalores de la matriz $G$. Solo en caso de que ambos sean negativos, el punto fijo es estable. Dado que la traza y el determinante de una matriz son invariantes, tenemos que la traza es la suma de los autovalores y el determinante es el producto. Para que ambos autovalores sean negativos, entonces, debe cumplirse que la traza es menor que cero y el determinante mayor que cero. Entonces, tenemos que para que el punto fijo sea estable se debe cumplir que
+\begin{equation}
+    \text{tr}(G) = g_{ee} - g_{ii} - 2 < 0 \Rightarrow g_{ee} - g_{ii} < 2
+    \label{02:Condicion_3}
+\end{equation}
+\begin{equation}
+    \det (G) = ( g_{ee} - 1 ) ( g_{ii} + 1) + g_{ei}g_{ie} > 0 \Rightarrow g_{ei} g_{ie} >  ( g_{ee} - 1 ) ( g_{ii} + 1)
+    \label{02:Condicion_4}
+\end{equation}
+
+Entonces, en resumen, para que la actividad de las poblaciones sea distinto de $0$ se deben cumplir las Ec \ref{02:Condicion_1} y \ref{02:Condicion_2}. Bajo esas condiciones, para que los puntos fijos dados por la Ec. \ref{02:Puntos_fijos} sean estables, se deben cumplir las condiciones dadas por las Ec. \ref{02:Condicion_3} y \ref{02:Condicion_4}. Si ademas, se busca que las poblaciones sean positivas, se puede desprender dos condiciones adicionales a partir de las Ec. \ref{02:Puntos_fijos}, ya que el $\det G > 0$, con lo cual
+\begin{equation}
+    \left(g_{ii} + 1\right) I_{e} -g_{ei} I_{i} < 0
+\end{equation}
+\begin{equation}
+    g_{ie} I_e - \left( g_{ee} - 1 \right) I_{i} < 0
+\end{equation}
+debe cumplirse para que las actividades de las poblaciones sea positiva.

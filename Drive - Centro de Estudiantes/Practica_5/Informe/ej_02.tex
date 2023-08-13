@@ -1,0 +1,55 @@
+\section*{Ejercicio 2}
+\graphicspath{{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/}}
+
+Para este ejercicio se tiene un red neuronal de Kohonen con dos neuronas de entrada. Se utilizaron dos neuronas de salidas, dispuesta sobre una linea entre los puntos $\vec{x}_1 = \left( -1,0.5 \right)$ y $\vec{x}_1 = \left( 1,0.5 \right)$ de forma equiespaciada.
+
+Las entradas $\vec{\xi}$ de la red fueron generadas con una distribución
+\begin{equation}
+    P\left(\vec{\xi}\right) = P\left(t, \theta\right) =
+    \left\{ \begin{array}{lcc}
+        \text{cte}  & \text{si} & r \in \left[0.9, 1.1\right] \,\,\text{y}\,\, \theta \in \left[0, \pi\right] \\
+        0           & \text{en otro caso} \\
+        \end{array}
+    \right.
+\end{equation}
+es decir que, las entradas generadas estas distribuidas uniformemente en media corona de radio menor $0.9$ y radio mayor $1.1$.
+
+En cada paso del aprendizaje, es necesario obtener un indice $i^{*}$ ganador, el cual corresponde a la unidad de pesos mas cercano a la entrada $\vec{\xi}$. Esta condicion puede expresarse como
+\begin{equation}
+    \left\| \vec{\omega}_{i^{*}} - \vec{\xi} \right\| \leq \left\| \vec{\omega}_{i} - \vec{\xi} \right\| \hspace{0.5cm} \forall i 
+\end{equation}
+donde $\vec{\omega}_{i}$ denota a los pesos de la salida $i$.
+
+Una vez obtenido el indice ganador $i^{*}$, la regla de aprendizaje para los pesos es
+\begin{equation}
+    \Delta \omega_{ij} = \eta \Lambda \left( i, i^{*} \right) \left( \xi_{j} - \omega_{ij} \right)
+\end{equation}
+donde $\eta$ es el \textit{learning rate} y $\Lambda$ en la \textit{función vecindad}, que para este ejercicio se utilizo una \textit{función vecindad Gaussiana} dada por
+\begin{equation}
+    \Lambda \left(i, i^{*}\right) \propto \exp \left( - \left( i-i^{*} \right)^{2} / 2\sigma^{2} \right).
+\end{equation}
+El efecto que introduce la función de \textit{función vecindad} es que la actualización de las neuronas sea local, siendo mas local cuanto menor sea el valor de $\sigma$.
+
+
+El entrenamiento se realizó para tres valores de $\sigma$: $0.01$, $0.5$ y $5$. Para cada uno de estos valores, se entreno a la red con $10$, $100$ y $10000$. En todos los casos se utilizó $\eta = 0.01$. En la Figura \ref{fig:2_Resultados} se observan los resultados del entrenamiento. Adicionalmente, se indica con un área sombreada la región correspondiente a la distribución de la entrada de la red y las posiciones iniciales de las neuronas de la red.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[h]{0.49\textwidth} 
+        \includegraphics[width=\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej2_0_01.pdf}
+    \end{subfigure}       
+    \begin{subfigure}[h]{0.49\textwidth} 
+        \includegraphics[width=\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej2_0_50.pdf}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth} 
+        \includegraphics[width=\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej2_5_00.pdf}
+    \end{subfigure}
+    \caption{Se observa la disposición final de las neuronas para distintos valores de $\sigma$ y distinta cantidad de entradas. Adicionalmente, se indica con un área sombreada la región correspondiente a la distribución de la entrada de la red y las posiciones iniciales de las neuronas.}
+    \label{fig:2_Resultados}
+\end{figure}
+
+Para $\sigma = 0.01$ las neuronas presentan dos comportamientos completamente diferentes. Una posibilidad es que la posición final de las neuronas se encuentre dentro del área sombreada, mientras que aquellas que no lo logran, se encuentran en zonas muy cercanas a su posición inicial. Esto se debe a que para un $\sigma$ pequeño, las actualizaciones de los pesos son muy locales y solo la neurona ganadora es la que se ve modificada de forma significativa. Esto favorece que las neuronas ganadoras sean las que nuevamente serán modificadas en iteraciones posteriores (ya que sera mas probable que se encuentren cerca de la zona sombreada).
+
+Con $\sigma=5$ es el caso opuesto, en donde las modificaciones de los pesos globales, con lo cual prácticamente todas las neuronas se mueven de la misma manera. 
+
+Por último, se observa que $\sigma=0.5$ es un equilibrio entre los dos comportamientos previamente descriptos y que, con la cantidad suficiente de iteraciones, la red aprende la forma de la distribución de la entrada sin problemas.

@@ -1,0 +1,75 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{float}				%Para poner las imagenes exactamente donde se me cante las pelotas en caso de quererlo, poniendole [H]
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{geometry}
+\usepackage{hieroglf}
+\usepackage{subcaption}
+\usepackage[justification=centering]{caption}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\geometry{
+a4paper,
+left=20mm,
+right=20mm,
+top=25mm,
+bottom = 20mm
+}
+\usepackage{float}
+\usepackage{units}
+% \usepackage{hyperref}   %Esto es para ir a los links
+
+\newcommand{\rojo}[1]{\textcolor{red}{#1}}    % Comando para escribir texto en rojo
+
+
+
+
+\title{\textbf{Redes Neuronales \\ Práctica 2 - Dinámica de sistemas acoplados}}
+
+\author{
+{F. M. Cabrera}
+%[1ex] \small{\textit{ Facultad de Ciencias Exactas y Naturales.}} \\
+%\small{\textit{Universidad de Buenos Aires. Ciudad Universitaria. Pabellón I. Buenos Aires. Argentina}}
+}
+\date{\textit{\today}}
+
+
+% Esto modifica el interlineado
+\renewcommand{\baselinestretch}{1}
+
+\graphicspath{{Figuras/}}
+
+\begin{document}
+
+\maketitle
+
+%\thispagestyle{empty} 
+
+
+\setcounter{page}{1}
+
+%\begin{abstract}
+
+
+%\end{abstract}
+%\vspace*{1cm}
+
+Todo el código implementado en esta practica puede encontrarse \href{https://github.com/cabre94/MSB_IB}{acá}.
+
+
+\input{ej_01.tex}
+\input{ej_02.tex}
+
+
+
+\bibliographystyle{acm}
+\bibliography{biblio}
+
+\end{document}
+
+
+

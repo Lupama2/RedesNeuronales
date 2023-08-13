@@ -1,0 +1,40 @@
+\section*{Ejercicio 1 - Modelo de Hopfield sin ruido}
+
+Para este este ejercicio, se considero una red de Hopfield sin ruido para solucionar el problema de memorizar patrones. Este problema consiste en memorizar un conjunto de patrones $\vec{\xi}^{\mu}$ de manera que al presentarle un nuevo patrón, la red retornara el patrón almacenado mas cercano a la entrada.
+
+Se comenzó generando $p$ patrones $\xi_{i}^{\mu}$ con $i=1,\dots,N$ y $\mu=1,\dots,p$, en donde cada uno de los valores es $\pm1$ con igual probabilidad.
+
+Luego se evaluó la matriz de conexiones $J$ de la red según
+
+\begin{equation}
+    J_{ij} =
+    \left\{ \begin{array}{lcc}
+        \frac{1}{N} \sum_{\mu=1}^{p} \xi_{i}^{\mu} \xi_{j}^{\mu}  & \text{si } i\neq j \\
+        0           & \text{si } i=j. \\
+        \end{array}
+    \right.
+    \label{eq:J}
+\end{equation}
+
+Fijados los valores de $N$ y $p$, se iteró la dinámica determinista dada por 
+\begin{equation}
+    S_{i} = \text{sgn} \left( \sum_{j=1}^{N} J_{ij} S_{j} \right)
+\end{equation}
+tomando como condición inicial $\vec{S} = \vec{\xi}^{\mu}$ y recorriendo el vector $\vec{S}$ de manera aleatoria. La dinámica finaliza una vez alcanzado un punto fijo $\vec{S}^{\mu}$ y luego se calculo el \textit{overlap} con el patrón
+\begin{equation}
+    m^{\mu} = \frac{1}{N}\sum_{i=1}^{N} S_{i}^{\mu} \xi_{i}^{\mu}.
+\end{equation}
+Este proceso se repitió para cada uno de los $p$ patrones.
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=\textwidth]{../1.pdf}
+    \caption{Histogramas del \textit{overlap} para distintos tamaños $N$ de la red de Hopfield y parámetros de carga $\alpha$.}
+    \label{fig:01}
+\end{figure}
+
+En la Fig. \ref{fig:01} se observan distintos histogramas de los \textit{overlaps} obtenidos para distintos valores de $N$ y del parámetro de carga $\alpha = \dfrac{p}{N}$. Para distintos tamaños y para $\alpha=0.12$ se observa que la mayor parte de los \textit{overlaps} es cercano a $1$, lo cual indica que el sistema puede reconocer los patrones que se almacenaron en la matriz de conexiones $J$. En el limite $N\rightarrow\infty$, los valores de \textit{overlap} deberían ser tales que $m\approx1$ para $\alpha < \alpha_{c} \approx 0.138$ y $m=0$ para $\alpha > \alpha_{c}$, lo cual es consistente para los resultados obtenidos para $\alpha = 0.12$.
+
+Por otro lado, al aumentar el parámetro de carga, la red disminuye su \textit{overlap} medio con los valores de entrada de manera continua. Esto es consecuencia de trabajar con sistemas finitos.
+
+Para $\alpha > \alpha_{c}$, la distribución de los \textit{overlaps} no se concentra en $0$, si no que se acumulan alrededor de $m \approx 0.3$ a medida que aumenta $\alpha$. 

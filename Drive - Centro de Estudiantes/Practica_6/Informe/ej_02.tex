@@ -1,0 +1,26 @@
+\section*{Ejercicio 2 - Modelo de Hopfield con ruido}
+
+Para este segundo ejercicio se estudio la dinámica de una red de Hopfield con ruido con $N=4000$ neuronas. Para esto se generaron $p=40$ patrones de entrada $\vec{\xi}^{\mu}$ con la misma distribución que el ejercicio 1. A su vez, se creo la matriz de conexiones $J$ según las condiciones dadas por la Ec. \ref{eq:J}.
+
+Al igual que el ejercicio anterior, para cada indice $\mu$, se tomó como condición inicial al parámetro $\vec{S} = \vec{\xi}^{\mu}$ y se realizaron 10 iteración utilizando la red estocástica
+\begin{equation}
+    Pr\left( S_{i}\left(t+1\right) = \pm 1 \right) = \frac{\exp \left( \pm h_{i}/T \right) }{\exp \left(  h_{i}/T \right) + \exp \left( - h_{i}/T \right)}
+    \label{eq:prob_2}
+\end{equation}
+donde $h_{i} = \sum_{N}^{j=1} J_{ij}S_{j}$ y el vector $\vec{S}$ se recorre de manera aleatoria.
+
+En la Fig. \ref{fig:02} se observa el \textit{overlap} promedio $\overline{m}$ como función del parámetro de ruido $T$. Se observa que para valores pequeños de $T$, el \textit{overlap} promedio se mantiene cercano a 0, indicando que los patrones $\overline{\xi}^{\mu}$ siguen siendo equilibrios estables del sistema.
+
+Al aumentar $T$, la capacidad de la red disminuye progresivamente, asi como el valor del $overlap$ y aumenta su desviación standard. Para $T$ grande, se observa de la Ec. \ref{eq:prob_2} que
+\begin{equation}
+    Pr\left(S_i = 1\right) = Pr\left(S_i  = -1\right) = \dfrac{1}{2}
+\end{equation}
+sin importar el valor de $h_i$, lo cual explica que el valor del $overlap$ tienda a cero. Por último, el hecho de que esta transición sea suave se debe a que el sistema trabajado es finito.
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=\textwidth]{../2.pdf}
+    \caption{\textit{Overlap} como función del parámetro de ruido $T$ de la red. Los puntos del gráfico corresponden al valor medio $\overline{m}$ y entre franjas la incerteza a partir de la desviación estándar muestreada de $m$.}
+    \label{fig:02}
+\end{figure}
+

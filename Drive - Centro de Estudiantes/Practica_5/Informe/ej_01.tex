@@ -1,0 +1,59 @@
+\section*{Ejercicio 1}
+\graphicspath{{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras}}
+
+Tenemos una red de una capa lineal con una entrada $\vec{\xi}$ de 4 componentes y una salida lineal. La ecuación de salida viene dada por
+\begin{equation}
+    V = \sum_{j=1}^{4} \omega_{j}\xi_{j}.
+\end{equation}
+
+La distribución de probabilidad de las entradas es una distribución Gaussiana con matriz de correlación $\Sigma$
+\begin{equation}
+    P \left( \vec{\xi} \right) =
+    \frac{1}{\left( 2\pi \right)^{2} \sqrt{\det \left( \Sigma \right)} }
+    \exp \left( -\frac{1}{2} \vec{\xi}^{t} \Sigma^{-1} \vec{\xi} \right) 
+\end{equation}
+donde se utilizó
+\begin{equation}
+    \Sigma = 
+    \begin{pmatrix}
+        2 &	1 & 1 & 1 \\
+        1 &	2 & 1 & 1 \\
+        1 &	1 & 2 & 1 \\
+        1 &	1 & 1 & 2 
+    \end{pmatrix}.
+\end{equation}
+
+Los pesos $\omega_{j}$ de la red fueron inicializados aleatoriamente con un distribución uniforme entre $-0.01$ y $0.01$ y fueron actualizados mediante la regla de Oja
+\begin{equation}
+	\Delta \omega_{j} = \eta V \left( \xi_{j} - V \omega_{j} \right)
+\end{equation}
+donde $\eta$ es el \textit{learning rate}.
+
+Se realizo este aprendizaje para 5000 entradas, utilizando $\eta = 0.001$. Los resultados obtenidos pueden observarse en la Figura \ref{fig:1_Omegas}. A la izquierda se observa la evolución de las cuatro componentes de pesos de la red. Sabemos que el aprendizaje dado por la regla de la Oja produce que el vector $\vec{\omega}$ dado por los pesos de la red, evolucione hacia la dirección del autovector de mayor autovalor de la matriz $\Sigma$. Dicha matriz posee 2 autovalores, 5 y 1. El autovalor 5 no tiene degeneración y su autovector es $\vec{v} = \left(0.5, 0.5, 0.5, 0.5\right)^{t}$. De esta manera, se observa que efectivamente los pesos de la red evolucionan alineándose a dicho autovector, como es esperado.
+
+Por otro lado, otra de las caracteristicas del aprendizaje dado por la regla de Oja es que $\vec{\omega}$ tiende a un vector unitario, es decir que $|\vec{\omega}|$ tiende a 1, lo cual se observa a la derecha de la Figura \ref{fig:1_Omegas}. Por último, simplemente a fin de visualización, en la Figura \ref{fig:1_3D} se observa un gráfico 3D con tres de las componentes de $\vec{\omega}$ a lo largo del aprendizaje.
+
+% Esta matrix $\Sigma$ tiene 2 autovalores, 5 y 1, donde el autovalor 1 tiene degeneración 3. El autovector correspondiente al autovalor 5 es $\bm \lambda = [1,1,1,1]^T$.
+
+
+\begin{figure}[htb!]
+    \centering
+    \begin{subfigure}[h]{0.49\textwidth} 
+        \includegraphics[width=\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej1_omegas.pdf}
+    \end{subfigure}       
+    \begin{subfigure}[h]{0.49\textwidth} 
+        \includegraphics[width=\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej1_Norma.pdf}
+    \end{subfigure}
+    \caption{A la izquierda, se observa la evolución a lo largo de las épocas de las cuatro componentes $\omega_{j}$ de la red utilizada mientras que a la derecha se observa la evolución de la norma $|\vec{\omega}|$. Tal y como predice la teoría, el vector $\vec{\omega}$ se alinea en la dirección del autovector de mayor autovalor de la matriz $\Sigma$, que en este caso corresponde a $\vec{v} = \left(0.5, 0.5, 0.5, 0.5\right)^{t}$. De la misma manera, $\vec{\omega}$ evoluciona de manera que $|\vec{\omega}| = 1$.}
+    \label{fig:1_Omegas}
+\end{figure}
+
+
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=0.55\textwidth]{/home/cabre/Desktop/Redes_Neuronales/Redes_Neuronales_IB/Practica_5/Figuras/ej1_3D.png}
+    \caption{Evolución de los pesos $\omega_{1}$, $\omega_{2}$ y $\omega_{3}$ durante el aprendizaje. Se observa que los mismos se alinean en la dirección del autovector de mayor autovalor de la matriz $\Sigma$, $\vec{v} = \left(0.5, 0.5, 0.5, 0.5\right)^{t}$.}
+    \label{fig:1_3D}
+\end{figure}
+

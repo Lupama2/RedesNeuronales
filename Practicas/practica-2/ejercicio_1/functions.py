@@ -27,7 +27,8 @@ def n_inf(V):
     return a_n/(a_n + b_n)
 
 def s_inf(V):
-    pass
+    return 0.5*(1 + np.tanh(V/5))
+
 
 ##########################################################
 #                   tau_x
@@ -55,7 +56,7 @@ def tau_n(V):
     return 1/(a_n + b_n)
 
 def tau_s(V):
-    pass
+    return 3
 
 ##########################################################
 #                   I_syn
@@ -63,6 +64,5 @@ def tau_s(V):
 
 def I_syn(V, s, g_syn, V_syn):
     
-    pass
-
+    return - g_syn*s*(V - V_syn)
 

@@ -2,7 +2,7 @@
 import numpy as np
 
 #Import functions
-from fun_ejercicio_1 import m_inf, h_inf, n_inf, s_inf, tau_m, tau_h, tau_n, tau_s, I_syn
+from functions import m_inf, h_inf, n_inf, s_inf, tau_m, tau_h, tau_n, tau_s, I_syn
 
 #Import parameters
 from parameters import C_hat, g_K_adim, g_Na_adim, g_L_adim, V_K, V_Na, V_L
@@ -38,6 +38,7 @@ def derivada(t, y, I_ext, g_syn, V_syn):
 
     #Eq of charge conservation
     dydt[0] = (1/C_hat) *(I_ext + I_syn(V1, s1, g_syn, V_syn) - g_K_adim*n1**4*(V1 - V_K) - g_Na_adim*m1**3*h1*(V1 - V_Na) - g_L_adim*(V1 - V_L))
+
     dydt[0 + N_eq] = (1/C_hat) *(I_ext + I_syn(V2, s2, g_syn, V_syn) - g_K_adim*n2**4*(V2 - V_K) - g_Na_adim*m2**3*h2*(V2 - V_Na) - g_L_adim*(V2 - V_L))
 
     #Eq's m, h, n

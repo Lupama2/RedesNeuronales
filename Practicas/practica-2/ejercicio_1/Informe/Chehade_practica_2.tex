@@ -1,0 +1,271 @@
+\documentclass[aps,prb,twocolumn,superscriptaddress,floatfix,longbibliography]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{wrapfig} 
+\usepackage[export]{adjustbox}
+
+\usepackage{amsmath,amssymb} % math symbols
+\usepackage{bm} % bold math font
+\usepackage{graphicx} % for figures
+\usepackage{comment} % allows block comments
+\usepackage{textcomp} % This package is just to give the text quote '
+%\usepackage{ulem} % allows strikeout text, e.g. \sout{text}
+
+\usepackage[spanish]{babel}
+
+\usepackage{enumitem}
+\setlist{noitemsep,leftmargin=*,topsep=0pt,parsep=0pt}
+
+\usepackage{xcolor} % \textcolor{red}{text} will be red for notes
+\definecolor{lightgray}{gray}{0.6}
+\definecolor{medgray}{gray}{0.4}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+urlcolor= blue,
+citecolor=blue,
+linkcolor= blue,
+bookmarks=true,
+bookmarksopen=false,
+}
+
+% Code to add paragraph numbers and titles
+\newif\ifptitle
+\newif\ifpnumber
+\newcounter{para}
+\newcommand\ptitle[1]{\par\refstepcounter{para}
+{\ifpnumber{\noindent\textcolor{lightgray}{\textbf{\thepara}}\indent}\fi}
+{\ifptitle{\textbf{[{#1}]}}\fi}}
+%\ptitletrue  % comment this line to hide paragraph titles
+%\pnumbertrue  % comment this line to hide paragraph numbers
+
+% minimum font size for figures
+\newcommand{\minfont}{6}
+
+% Uncomment this line if you prefer your vectors to appear as bold letters.
+% By default they will appear with arrows over them.
+% \renewcommand{\vec}[1]{\bm{#1}}
+
+%Cambiar Cuadros por Tablas y lista de...
+%\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\date}{Fecha}
+
+\graphicspath{ {C:/Users/lupam/Mi unidad/Pablo Chehade/Instituto Balseiro (IB)/Laboratorio Avanzado/Informe/V5/Figures} } %Para importar imágenes desde una carpeta
+
+
+\usepackage[bottom]{footmisc} %para que las notas al pie aparezcan en la misma página
+
+
+
+\begin{comment}
+
+%Comandos de interés:
+
+* Para ordenar el documento:
+\section{Introducción}
+\section{\label{sec:Formatting}Formatting} %label para luego hacer referencia a esa sección
+
+\ptitle{Start writing while you experiment} %pone nombre y título al documento dependiendo de si en el header están los comandos \ptitletrue y \pnumbertrue
+
+* Ecuaciones:
+\begin{equation}
+a^2+b^2=c^2 \,.
+\label{eqn:Pythagoras}
+\end{equation}
+
+* Conjunto de ecuaciones:
+\begin{eqnarray}
+\label{eqn:diagonal}
+\nonumber d & = & \sqrt{a^2 + b^2 + c^2} \\
+& = & \sqrt{3^2+4^2+12^2} = 13
+\end{eqnarray}
+
+* Para hacer items / enumerar:
+\begin{enumerate}
+  \item
+\end{enumerate}
+
+\begin{itemize}
+  \item
+\end{itemize}
+
+* Figuras:
+\begin{figure}[h]
+    \includegraphics[clip=true,width=\columnwidth]{pixel-compare}
+    \caption{}
+     \label{fig:pixels}
+\end{figure}
+
+* Conjunto de figuras:
+(no recuerdo)
+
+
+* Para hacer referencias a fórmulas, tablas, secciones, ... dentro del documento:
+\ref{tab:spacing}
+
+* Para citar
+Elementos de .bib
+\cite{WhitesidesAdvMat2004}
+url
+\url{http://www.mendeley.com/}\\
+
+* Agradecimientos:
+\begin{acknowledgments}
+We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fig:pixels}.
+\end{acknowledgments}
+
+* Apéndice:
+\appendix
+\section{\label{app:Mendeley}Mendeley}
+
+* Bibliografía:
+\bibliography{Hoffman-example-paper}
+
+\end{comment}
+
+
+
+\begin{document}
+
+% Allows to rewrite the same title in the supplement
+\newcommand{\mytitle}{Dinámica de sistemas acoplados}
+
+\title{\mytitle}
+
+\author{Pablo Chehade \\
+    \small \textit{pablo.chehade@ib.edu.ar} \\
+    \small \textit{Redes Neuronales, Instituto Balseiro, CNEA-UNCuyo, Bariloche, Argentina, 2023} \\}
+    
+    
+    
+\maketitle
+
+
+
+\section{Ejercicio 1}
+Se analizó la interacción entre dos neuronas HH idénticas conectadas simétricamente con interacciones sinápticas excitatorias. La dinámica de cada neurona se describe mediante el sistema de ecuaciones diferenciales:
+
+$C \frac{dV}{dt} = I_{ext} + I_{syn,pre} - g_{Na}m^3h(V-V_{Na}) - g_{K}n^4(V - V_k) - g_l(V-V_l)$
+
+$\frac{dm}{dt} = (m_\infty(V) - m)/\tau_m(V)$
+
+$\frac{dh}{dt} = (h_\infty(V) - h)/\tau_h(V)$
+
+$\frac{dn}{dt} = (n_\infty(V) - n)/\tau_n(V)$
+
+$\frac{ds}{dt} = (s_\infty(V_{pre}) - s)/\tau_s$
+
+Donde:
+
+x_\infty(V) = a_x/(a_x + b_x) y \tau_x(V) = 1/(a_x + b_x) para x = m, h, n. Las funciones a_x y b_x se definen como:
+
+a_m = 0.1(V + 40)/(1 - e^{-(V+40)/10}), b_m = 4 e^{- (V + 65)/18}
+
+a_h = 0.07 e^{- (V+65)/20}, b_h = 1/(1 + e^{- (V+35)/10})
+
+a_n = 0.01(V+55)/(1-e^{-(V+55)/10}), b_n = 0.125 e^{-(V+65)/80}.
+
+Además:
+
+s_\infty = 0.5 (1 + tanh(V/5)) y \tau_s = 3 ms.
+
+Los valores de potenciales de inversión y conductancias máximas son:
+
+V_{Na} = 50 mV, V_K = -77 mV, V_l = -54.4 mV, g_{Na} = 120 mS/cm^2, g_K = 36 mS/cm^2, g_l = 0.3 mS/cm^2. La capacitancia de membrana es C = 1 \mu F/cm^2 y la corriente externa, I_{ext} = 10 mA.
+
+La corriente I_{syn, pre} se define como:
+
+$I_{syn, pre}(t) = -g_{syn} s(t) (V - V_{syn})$
+
+Esta corriente representa la influencia de la segunda neurona, denominada en este contexto como "neurona presináptica". Por su expresión, es claro que la amplitud de la interacción está determinada por el factor g_{syn}. Por otro lado, la interacción puede ser excitatoria o inhibitoria dependiendo del valor de la constante V_{syn}
+
+Como se mencionó anteriormente, las ecuaciones (REFERENCIA) describen una única neurona, con lo cual el sistema completo consta de 10 ecuaciones diferenciales acopladas.
+
+Se empleó el método numérico Runge-Kutta 45 para resolver el sistema de ecuaciones diferenciales acopladas. Se examinaron dos valores para \(V_{syn}\): 0 mV y -80 mV. Las condiciones iniciales fueron un potencial de 0 \(mV\) para la primera neurona y -50 mV para la segunda. Las variables restantes se establecieron según \(x_\infty(V)\) para \(x = m, h, n\) y \(s\), evaluadas en los potenciales iniciales.
+
+**Dinámica Temporal de las Neuronas:**
+
+La figura (REF) ilustra los potenciales \(V_1\) y \(V_2\) de ambas neuronas a lo largo del tiempo con \(g_{syn} = 1\). Se observan spikes periódicos en ambas neuronas, sugiriendo una interacción entre ellas. Estas señales presentan una periodicidad similar, indicando una sincronización. Además, las interacciones excitatorias muestran un comportamiento en fase, mientras que las inhibitorias se comportan en contrafase.
+
+Al variar \(g_{syn}\), se observan cambios en la dinámica neuronal. La figura (REF) muestra cómo los potenciales varían en el tiempo para diferentes valores de \(g_{syn}\), destacando un cambio en la frecuencia de los spikes con este parámetro.
+
+**Tasa de Disparo y Desfasaje:**
+
+Se determinó numéricamente la tasa de disparo de las neuronas. Esta tasa se define como el número de spikes por unidad de tiempo. Luego, se calculó el desfasaje entre las neuronas, definido como la diferencia temporal entre los picos de ambos potenciales, normalizada por el período del sistema. Estos cálculos se realizaron en el estado estacionario, después de haber superado la fase transitoria. Todos estos resultados se presentan en la figura (REF).
+
+En cuanto a la tasa de disparo, esta disminuye al aumentar \(g_{syn}\). Aunque intuitivamente se esperaría un aumento en la tasa con una mayor interacción, esto no sucede. Una posible explicación es que la corriente de interacción no es constante como I_{ext} y solo actúa en momentos específicos.
+
+En cuanto al desfasaje, con \(g_{syn} = 0\), se observa un desfasaje distinto entre las neuronas, lo cual está ligado a la falta de interacción. Sin embargo, para g_syn ≠ 0m el desfasaje parece ser independiente del parámetro, pero totalmente determinado por el tipo de interacción. En interacciones excitatorias, el desfasaje es nulo (comportamiento en fase), mientras que en interacciones inhibitorias, el desfasaje es de 0.5, lo que indica un comportamiento en contrafase.
+
+\section{Ejercicio 2}
+
+
+Se analizó un sistema compuesto por dos grupos de neuronas: excitatorias e inhibitorias, utilizando el modelo de tasa de disparo (Fire Rate Model). Además, se estableció una relación semilineal entre la frecuencia de disparo y la corriente. Las ecuaciones que describen la dinámica de este sistema son las siguientes
+
+\tau \frac{dh_e}{dt} = -h_e + g_{ee} f_e - g_{ei} f_i + I_e
+
+\tau \frac{dh_i}{dt} = -h_i + g_{ie} f_e - g_{ii} f_i + I_i,
+
+donde:
+
+- \tau es una constante de tiempo.
+- h_e y h_i son los potenciales de las neuronas excitatorias (e) e inhibitorias (i), respectivamente.
+- f_e y f_i representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha), donde \Theta(x) es la función de Heaviside.
+- g_{\alpha \beta} indica el peso de acoplamiento entre la población \alpha y la población \beta. Si el acoplamiento se dirige a la población de neuronas excitatorias, el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias, es negativo.
+
+A continuación se estudiará si existe una solución en el estado estacionario en la que ambas poblaciones neuronales muestren actividad distinta de cero y si tal solución es estable
+
+Para que ambas poblaciones estén activas, las tasas de disparo \(f_e\) y \(f_i\) deben ser mayores que cero. Debido a la relación semilineal con los potenciales, esto implica que \(h_e\) y \(h_i\) también deben ser positivos. En estado estacionario, se presentan dos escenarios:
+
+1. Los potenciales son constantes en el tiempo, lo cual lleva a las ecuaciones:
+    
+    \(-h_e + g_{ee} f_e - g_{ei} f_i + I_e = 0\)
+    
+    \(-h_i + g_{ie} f_e - g_{ii} f_i + I_i = 0\)
+    
+2. Los potenciales cambian en el tiempo, pero con un comportamiento periódico. En tal caso, es posible integrar las ecuaciones de la dinámica en un período y arribar a las mismas ecuaciones anteriores.
+
+Incorporando la relación entre la tasa de disparo y el potencial y teniendo en cuenta los signos de los pesos, tales ecuaciones se traducen en el sistema algebraico lineal:
+
+\[ A \begin{pmatrix} h_e \\ h_i \end{pmatrix} = - \begin{pmatrix} I_e \\ I_i \end{pmatrix}, \]
+
+donde la matriz \(A\) se define como:
+
+\[ A = \begin{pmatrix} |g_{ee}| - 1 & |g_{ei}| \\ |g_{ie}| & |g_{ii}| - 1 \end{pmatrix} \]
+
+De aquí, se puede deducir
+
+\[ \begin{pmatrix} h_e \\ h_i \end{pmatrix} = - A^{-1} \begin{pmatrix} I_e \\ I_i \end{pmatrix} \]
+
+Con \(A^{-1}\) siendo:
+
+\[ A^{-1} = \frac{1}{D} \begin{pmatrix} |g_{ii}| - 1 & -|g_{ei}| \\ -|g_{ie}| & |g_{ee}| - 1 \end{pmatrix} \]
+
+Y \(D\) es el determinante de \(A\). En base a lo anterior, para garantizar actividad neuronal es necesario que se cumplan las condiciones:
+
+\[ -\frac{1}{D} [ I_e (|g_{ii}| - 1) - I_i |g_{ei}| ] > 0 \]
+
+\[ -\frac{1}{D} [ -I_e |g_{ie}| + I_i (|g_{ee}| - 1) ] > 0 \]
+
+Por otro lado, la estabilidad de esta solución requiere que la matriz jacobiana del sistema tenga una traza \(T\) negativa y un determinante positivo. Esta matriz coincide con \(\tau A\), estableciendo las condiciones:
+
+\[ T = |g_{ee}| + |g_{ii}| - 2 < 0 \]
+
+\[ D = (|g_{ee}| - 1)(|g_{ii}| - 1) - |g_{ie}||g_{ei}| > 0 \]
+
+
+
+\bibliography{Chehade_practica_2.bib}
+
+\end{document}
+
+
+
+
+

@@ -13,6 +13,8 @@
 \usepackage{graphicx} % for figures
 \usepackage{comment} % allows block comments
 \usepackage{textcomp} % This package is just to give the text quote '
+\usepackage{listings} %para agregar código
+
 %\usepackage{ulem} % allows strikeout text, e.g. \sout{text}
 
 \usepackage[spanish]{babel}
@@ -57,6 +59,18 @@ bookmarksopen=false,
 \renewcommand{\date}{Fecha}
 
 \graphicspath{ {C:/Users/lupam/Mi unidad/Pablo Chehade/Instituto Balseiro (IB)/Laboratorio Avanzado/Informe/V5/Figures} } %Para importar imágenes desde una carpeta
+
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green},
+  stringstyle=\color{red},
+} %Configuración para el bloque de código
 
 
 \usepackage[bottom]{footmisc} %para que las notas al pie aparezcan en la misma página
@@ -151,39 +165,36 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 \section{Ejercicio 1}
 Se analizó la interacción entre dos neuronas HH idénticas conectadas simétricamente con interacciones sinápticas excitatorias. La dinámica de cada neurona se describe mediante el sistema de ecuaciones diferenciales:
 
-$C \frac{dV}{dt} = I_{ext} + I_{syn,pre} - g_{Na}m^3h(V-V_{Na}) - g_{K}n^4(V - V_k) - g_l(V-V_l)$
+\[
+\left\{\begin{array}{@{}l@{}}
+    C \frac{dV}{dt} = I_{ext} + I_{syn,pre} - g_{Na}m^3h(V-V_{Na}) \\ 
+    \hspace{4em} - g_{K}n^4(V - V_k) - g_l(V-V_l)    \\
+    \frac{dm}{dt} = (m_\infty(V) - m)/\tau_m(V)    \\
+    \frac{dh}{dt} = (h_\infty(V) - h)/\tau_h(V)    \\
+    \frac{dn}{dt} = (n_\infty(V) - n)/\tau_n(V)    \\
+    \frac{ds}{dt} = (s_\infty(V_{pre}) - s)/\tau_s,
+    \end{array}\right.
+\]
 
-$\frac{dm}{dt} = (m_\infty(V) - m)/\tau_m(V)$
+donde:
 
-$\frac{dh}{dt} = (h_\infty(V) - h)/\tau_h(V)$
+$x_\infty(V) = a_x/(a_x + b_x)$ y $\tau_x(V) = 1/(a_x + b_x)$ para $x = m, h, n$. Las funciones $a_x$ y $b_x$ se definen como:
+\[
+\left\{\begin{matrix}
+    a_m = 0.1(V + 40)/(1 - e^{-(V+40)/10}) \\
+    b_m = 4 e^{- (V + 65)/18}    \\
+    a_h = 0.07 e^{- (V+65)/20} \\ 
+    b_h = 1/(1 + e^{- (V+35)/10})    \\
+    a_n = 0.01(V+55)/(1-e^{-(V+55)/10}) \\
+    b_n = 0.125 e^{-(V+65)/80}.
+    \end{matrix}\right.
+\]
+Además, $s_\infty = 0.5 (1 + \tanh(V/5))$ y $\tau_s = 3$ ms.
 
-$\frac{dn}{dt} = (n_\infty(V) - n)/\tau_n(V)$
+Los valores de potenciales de inversión y conductancias máximas son: $V_{Na} = 50$ mV, $V_K = -77$ mV, $V_l = -54.4$ mV, $g_{Na} = 120$ $\mathrm{mS/cm^2}$, $g_K = 36$ $\mathrm{mS/cm^2}$, $g_l = 0.3$ $\mathrm{mS/cm^2}$. La capacitancia de membrana es $C = 1$ $\mathrm{\mu F/cm^2}$ y la corriente externa, $I_{ext} = 10$ mA. La corriente $I_{syn, pre}$ se define como:
+\[I_{syn, pre}(t) = -g_{syn} s(t) (V - V_{syn})\]
 
-$\frac{ds}{dt} = (s_\infty(V_{pre}) - s)/\tau_s$
-
-Donde:
-
-x_\infty(V) = a_x/(a_x + b_x) y \tau_x(V) = 1/(a_x + b_x) para x = m, h, n. Las funciones a_x y b_x se definen como:
-
-a_m = 0.1(V + 40)/(1 - e^{-(V+40)/10}), b_m = 4 e^{- (V + 65)/18}
-
-a_h = 0.07 e^{- (V+65)/20}, b_h = 1/(1 + e^{- (V+35)/10})
-
-a_n = 0.01(V+55)/(1-e^{-(V+55)/10}), b_n = 0.125 e^{-(V+65)/80}.
-
-Además:
-
-s_\infty = 0.5 (1 + tanh(V/5)) y \tau_s = 3 ms.
-
-Los valores de potenciales de inversión y conductancias máximas son:
-
-V_{Na} = 50 mV, V_K = -77 mV, V_l = -54.4 mV, g_{Na} = 120 mS/cm^2, g_K = 36 mS/cm^2, g_l = 0.3 mS/cm^2. La capacitancia de membrana es C = 1 \mu F/cm^2 y la corriente externa, I_{ext} = 10 mA.
-
-La corriente I_{syn, pre} se define como:
-
-$I_{syn, pre}(t) = -g_{syn} s(t) (V - V_{syn})$
-
-Esta corriente representa la influencia de la segunda neurona, denominada en este contexto como "neurona presináptica". Por su expresión, es claro que la amplitud de la interacción está determinada por el factor g_{syn}. Por otro lado, la interacción puede ser excitatoria o inhibitoria dependiendo del valor de la constante V_{syn}
+Esta corriente representa la influencia de la segunda neurona, denominada en este contexto como "neurona presináptica". Por su expresión, es claro que la amplitud de la interacción está determinada por el factor $g_{syn}$. Por otro lado, la interacción puede ser excitatoria o inhibitoria dependiendo del valor de la constante $V_{syn}$.
 
 Como se mencionó anteriormente, las ecuaciones (REFERENCIA) describen una única neurona, con lo cual el sistema completo consta de 10 ecuaciones diferenciales acopladas.
 
@@ -199,35 +210,39 @@ Al variar \(g_{syn}\), se observan cambios en la dinámica neuronal. La figura (
 
 Se determinó numéricamente la tasa de disparo de las neuronas. Esta tasa se define como el número de spikes por unidad de tiempo. Luego, se calculó el desfasaje entre las neuronas, definido como la diferencia temporal entre los picos de ambos potenciales, normalizada por el período del sistema. Estos cálculos se realizaron en el estado estacionario, después de haber superado la fase transitoria. Todos estos resultados se presentan en la figura (REF).
 
-En cuanto a la tasa de disparo, esta disminuye al aumentar \(g_{syn}\). Aunque intuitivamente se esperaría un aumento en la tasa con una mayor interacción, esto no sucede. Una posible explicación es que la corriente de interacción no es constante como I_{ext} y solo actúa en momentos específicos.
+En cuanto a la tasa de disparo, esta disminuye al aumentar \(g_{syn}\). Aunque intuitivamente se esperaría un aumento en la tasa con una mayor interacción, esto no sucede. Una posible explicación es que la corriente de interacción no es constante como $I_{ext}$ y solo actúa en momentos específicos.
 
-En cuanto al desfasaje, con \(g_{syn} = 0\), se observa un desfasaje distinto entre las neuronas, lo cual está ligado a la falta de interacción. Sin embargo, para g_syn ≠ 0m el desfasaje parece ser independiente del parámetro, pero totalmente determinado por el tipo de interacción. En interacciones excitatorias, el desfasaje es nulo (comportamiento en fase), mientras que en interacciones inhibitorias, el desfasaje es de 0.5, lo que indica un comportamiento en contrafase.
+En cuanto al desfasaje, con $g_{syn} = 0$, se observa un desfasaje distinto entre las neuronas, lo cual está ligado a la falta de interacción. Sin embargo, para $g_{syn} \neq 0$ el desfasaje parece ser independiente del parámetro, pero totalmente determinado por el tipo de interacción. En interacciones excitatorias, el desfasaje es nulo (comportamiento en fase), mientras que en interacciones inhibitorias, el desfasaje es de 0.5, lo que indica un comportamiento en contrafase.
 
 \section{Ejercicio 2}
 
 
 Se analizó un sistema compuesto por dos grupos de neuronas: excitatorias e inhibitorias, utilizando el modelo de tasa de disparo (Fire Rate Model). Además, se estableció una relación semilineal entre la frecuencia de disparo y la corriente. Las ecuaciones que describen la dinámica de este sistema son las siguientes
 
-\tau \frac{dh_e}{dt} = -h_e + g_{ee} f_e - g_{ei} f_i + I_e
-
-\tau \frac{dh_i}{dt} = -h_i + g_{ie} f_e - g_{ii} f_i + I_i,
-
+\[
+\left\{\begin{array}{@{}l@{}}
+    \tau \frac{dh_e}{dt} = -h_e + g_{ee} f_e - g_{ei} f_i + I_e \\
+    \tau \frac{dh_i}{dt} = -h_i + g_{ie} f_e - g_{ii} f_i + I_i,
+    \end{array}\right.
+\]
 donde:
-
-- \tau es una constante de tiempo.
-- h_e y h_i son los potenciales de las neuronas excitatorias (e) e inhibitorias (i), respectivamente.
-- f_e y f_i representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha), donde \Theta(x) es la función de Heaviside.
-- g_{\alpha \beta} indica el peso de acoplamiento entre la población \alpha y la población \beta. Si el acoplamiento se dirige a la población de neuronas excitatorias, el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias, es negativo.
-
+\begin{itemize}
+    \item $\tau$ es una constante de tiempo.
+    \item $h_e$ y $h_i$ son los potenciales de las neuronas excitatorias ($e$) e inhibitorias ($i$), respectivamente.
+    \item $f_e$ y $f_i$ representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal $f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha)$, donde $\Theta(x)$ es la función de Heaviside.
+    \item $g_{\alpha \beta}$ indica el peso de acoplamiento entre la población $\alpha$ y la población $\beta$. Si el acoplamiento se dirige a la población de neuronas excitatorias, el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias, es negativo.
+\end{itemize}
 A continuación se estudiará si existe una solución en el estado estacionario en la que ambas poblaciones neuronales muestren actividad distinta de cero y si tal solución es estable
 
 Para que ambas poblaciones estén activas, las tasas de disparo \(f_e\) y \(f_i\) deben ser mayores que cero. Debido a la relación semilineal con los potenciales, esto implica que \(h_e\) y \(h_i\) también deben ser positivos. En estado estacionario, se presentan dos escenarios:
 
 1. Los potenciales son constantes en el tiempo, lo cual lleva a las ecuaciones:
-    
-    \(-h_e + g_{ee} f_e - g_{ei} f_i + I_e = 0\)
-    
-    \(-h_i + g_{ie} f_e - g_{ii} f_i + I_i = 0\)
+\[
+\left\{\begin{array}{@{}l@{}}
+    -h_e + g_{ee} f_e - g_{ei} f_i + I_e = 0 \\
+    -h_i + g_{ie} f_e - g_{ii} f_i + I_i = 0
+    \end{array}\right.
+\]
     
 2. Los potenciales cambian en el tiempo, pero con un comportamiento periódico. En tal caso, es posible integrar las ecuaciones de la dinámica en un período y arribar a las mismas ecuaciones anteriores.
 
@@ -260,6 +275,16 @@ Por otro lado, la estabilidad de esta solución requiere que la matriz jacobiana
 \[ D = (|g_{ee}| - 1)(|g_{ii}| - 1) - |g_{ie}||g_{ei}| > 0 \]
 
 
+
+\section{Apéndice}
+
+A continuación se desarrolla el código utilizado para resolver el sistema de ecuaciones diferenciales acopladas implementado en python.
+
+\begin{lstlisting}[language=Python]
+    def hello_world():
+        print("Hello, World!")
+    \end{lstlisting}
+    
 
 \bibliography{Chehade_practica_2.bib}
 

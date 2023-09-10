@@ -199,12 +199,12 @@ Esta corriente representa la influencia de la segunda neurona, denominada en est
 
 Como se mencionó anteriormente, las ecuaciones \ref{eq:ej1_ecs_difs} describen una única neurona, con lo cual el sistema completo consta de 10 ecuaciones diferenciales acopladas.
 
-Se resolvió numéricamente el sistema de ecuaciones diferenciales acopladas empleando el método numérico Runge-Kutta 45 con una tolerancia relativa de \textcolor{red}{????} y una tolerancia absoluta de \textcolor{red}{????}. Se examinaron dos valores para \(V_{syn}\): 0 mV correspondiente a una interacción excitatoria y -80 mV correspondiente a una inhibitoria. En cuanto a las condiciones iniciales, se estableció un potencial de 0 \(mV\) para la primera neurona y -50 mV para la segunda. Las variables restantes se establecieron según \(x_\infty(V)\) para \(x = m, h, n\) y \(s\), evaluadas en los potenciales iniciales.
+Se resolvió numéricamente el sistema de ecuaciones diferenciales acopladas empleando el método numérico Runge-Kutta 45 con una tolerancia relativa de $1\times 10^{-3}$ y una tolerancia absoluta de $1 \times 10^{-6}$. Se examinaron dos valores para \(V_{syn}\): 0 mV correspondiente a una interacción excitatoria y -80 mV correspondiente a una inhibitoria. En cuanto a las condiciones iniciales, se estableció un potencial de 0 \(mV\) para la primera neurona y -50 mV para la segunda. Las variables restantes se establecieron según \(x_\infty(V)\) para \(x = m, h, n\) y \(s\), evaluadas en los potenciales iniciales.
 
 La figura \ref{fig:ej1_potenciales_vs_Vsyn} ilustra los potenciales de membrana \(V_1\) y \(V_2\) de ambas neuronas a lo largo del tiempo con \(g_{syn} = 1\). Se observan spikes periódicos en ambas neuronas, sugiriendo una interacción entre ellas. Una vez atravesada una fase transitoria, estas señales presentan una periodicidad similar, indicando una sincronización. Además, las interacciones excitatorias muestran un comportamiento en fase, mientras que las inhibitorias se comportan en contrafase.
 
 \begin{figure}[h]
-    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_Vsyn}
+    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_Vsyn.png}
     \caption{Potenciales de membrana $V_1$ y $V_2$ de ambas neuronas en función del tiempo $t$ para $g_{syn} = 1$ y dos valores distintos de $V_{syn}$.}
      \label{fig:ej1_potenciales_vs_Vsyn}
 \end{figure}
@@ -212,7 +212,7 @@ La figura \ref{fig:ej1_potenciales_vs_Vsyn} ilustra los potenciales de membrana 
 Al variar \(g_{syn}\), se observan cambios en la dinámica neuronal. La figura \ref{fig:ej1_potenciales_vs_gsyn} muestra cómo los potenciales varían en el tiempo para diferentes valores de \(g_{syn}\), destacando un cambio en la frecuencia de los spikes con este parámetro.
 
 \begin{figure}[h]
-    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_gsyn}
+    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_gsyn.png}
     \caption{Potenciales de membrana $V_1$ y $V_2$ de ambas neuronas en función del tiempo $t$ para $V_{syn} = 0$ y dos valores distintos de $g_{syn}$.}
      \label{fig:ej1_potenciales_vs_gsyn}
 \end{figure}
@@ -223,12 +223,12 @@ Para describir cuantitativamente los efectos anteriores, se determinó numérica
 \begin{figure}[h]
    \centering
    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[clip=true,width=\columnwidth]{ej1_tasa_desfasaje}
-        \label{fig:ej1_tasa}
+        \includegraphics[clip=true,width=\columnwidth]{ej1_tasa.png}
+        \caption{\label{fig:ej1_tasa}}
    \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
-          \includegraphics[clip=true,width=\columnwidth]{ej1_tasa_desfasaje}
-          \label{fig:ej1_desfasaje}
+          \includegraphics[clip=true,width=\columnwidth]{ej1_desfasaje.png}
+          \caption{\label{fig:ej1_desfasaje}}
     \end{subfigure}
     \caption{\ref{fig:ej1_tasa} Tasa de disparo de ambas neuronas y \ref{fig:ej1_desfasaje} desfasaje entre neuronas para $V_{syn} = 0$ y $V_{syn} = -80$ mV.}
     \label{fig:ej1_tasa_desfasaje}
@@ -252,14 +252,9 @@ Se analizó un sistema compuesto por dos grupos de neuronas: excitatorias e inhi
     \tau \frac{dh_i}{dt} = -h_i + g_{ie} f_e - g_{ii} f_i + I_i,
     \end{array}\right.
 \]
-donde:
-\begin{itemize}
-    \item $\tau$ es una constante de tiempo.
-    \item $h_e$ y $h_i$ son los potenciales de las neuronas excitatorias ($e$) e inhibitorias ($i$), respectivamente.
-    \item $f_e$ y $f_i$ representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal $f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha)$, donde $\Theta(x)$ es la función de Heaviside.
-    \item $g_{\alpha \beta}$ indica el peso de acoplamiento entre la población $\alpha$ y la población $\beta$. Si el acoplamiento se dirige a la población de neuronas excitatorias, el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias, es negativo.
-\end{itemize}
-A continuación se estudiará si existe una solución en el estado estacionario en la que ambas poblaciones neuronales muestren actividad distinta de cero y si tal solución es estable
+donde $f_e$ y $f_i$ representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal $f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha)$, con $\Theta(x)$ función de Heaviside. Además, $g_{\alpha \beta}$ indica el peso de acoplamiento entre la población $\alpha$ y la población $\beta$. Si el acoplamiento se dirige a la población de neuronas excitatorias ($e$), el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias ($i$), es negativo.
+
+A continuación se estudiará si existe una solución en el estado estacionario en la que ambas poblaciones neuronales muestren actividad distinta de cero y si tal solución es estable.
 
 Para que ambas poblaciones estén activas, las tasas de disparo \(f_e\) y \(f_i\) deben ser mayores que cero. Debido a la relación semilineal con los potenciales, esto implica que \(h_e\) y \(h_i\) también deben ser positivos. En estado estacionario, se presentan dos escenarios:
 
@@ -289,7 +284,9 @@ Con \(A^{-1}\) siendo:
 
 \[ A^{-1} = \frac{1}{D} \begin{pmatrix} |g_{ii}| - 1 & -|g_{ei}| \\ -|g_{ie}| & |g_{ee}| - 1 \end{pmatrix} \]
 
-Y \(D\) es el determinante de \(A\). En base a lo anterior, para garantizar actividad neuronal es necesario que se cumplan las condiciones:
+Y \(D\) es el determinante de \(A\) dado por
+\[D = (|g_{ee}| - 1)(|g_{ii}| - 1) - |g_{ie}||g_{ei}|.\]
+En base a lo anterior, para garantizar actividad neuronal es necesario que se cumplan las condiciones:
 
 \[ -\frac{1}{D} [ I_e (|g_{ii}| - 1) - I_i |g_{ei}| ] > 0 \]
 
@@ -305,7 +302,7 @@ Por otro lado, la estabilidad de esta solución requiere que la matriz jacobiana
 
 \section{Apéndice}
 
-A continuación se desarrolla el código utilizado para resolver el sistema de ecuaciones diferenciales acopladas implementado en python.
+A continuación se desarrolla el código utilizado en el ejercicio 1 para resolver el sistema de ecuaciones diferenciales acopladas. Este código está implementado en Python
 
 \begin{lstlisting}[language=Python]
     def hello_world():

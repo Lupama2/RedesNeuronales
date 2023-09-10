@@ -163,9 +163,9 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 
 
 \section{Ejercicio 1}
-Se analizó la interacción entre dos neuronas HH idénticas conectadas simétricamente con interacciones sinápticas excitatorias. La dinámica de cada neurona se describe mediante el sistema de ecuaciones diferenciales:
+Se analizó la interacción entre dos neuronas Hodgkin-Huxley idénticas conectadas simétricamente con interacciones sinápticas excitatorias. La dinámica de cada neurona se describe mediante el sistema de ecuaciones diferenciales:
 
-\[
+\begin{equation}
 \left\{\begin{array}{@{}l@{}}
     C \frac{dV}{dt} = I_{ext} + I_{syn,pre} - g_{Na}m^3h(V-V_{Na}) \\ 
     \hspace{4em} - g_{K}n^4(V - V_k) - g_l(V-V_l)    \\
@@ -174,7 +174,8 @@ Se analizó la interacción entre dos neuronas HH idénticas conectadas simétri
     \frac{dn}{dt} = (n_\infty(V) - n)/\tau_n(V)    \\
     \frac{ds}{dt} = (s_\infty(V_{pre}) - s)/\tau_s,
     \end{array}\right.
-\]
+    \label{eq:ej1_ecs_difs}
+\end{equation}
 
 donde:
 
@@ -191,26 +192,52 @@ $x_\infty(V) = a_x/(a_x + b_x)$ y $\tau_x(V) = 1/(a_x + b_x)$ para $x = m, h, n$
 \]
 Además, $s_\infty = 0.5 (1 + \tanh(V/5))$ y $\tau_s = 3$ ms.
 
-Los valores de potenciales de inversión y conductancias máximas son: $V_{Na} = 50$ mV, $V_K = -77$ mV, $V_l = -54.4$ mV, $g_{Na} = 120$ $\mathrm{mS/cm^2}$, $g_K = 36$ $\mathrm{mS/cm^2}$, $g_l = 0.3$ $\mathrm{mS/cm^2}$. La capacitancia de membrana es $C = 1$ $\mathrm{\mu F/cm^2}$ y la corriente externa, $I_{ext} = 10$ mA. La corriente $I_{syn, pre}$ se define como:
-\[I_{syn, pre}(t) = -g_{syn} s(t) (V - V_{syn})\]
+Los valores de potenciales de inversión y conductancias máximas son: $V_{Na} = 50$ mV, $V_K = -77$ mV, $V_l = -54.4$ mV, $g_{Na} = 120$ $\mathrm{mS/cm^2}$, $g_K = 36$ $\mathrm{mS/cm^2}$, $g_l = 0.3$ $\mathrm{mS/cm^2}$. La capacitancia de membrana es $C = 1$ $\mathrm{\mu F/cm^2}$ y la corriente externa, $I_{ext} = 10$ mA. La corriente de interacción sináptica $I_{syn, pre}$ se define como:
+\[I_{syn, pre}(t) = -g_{syn} s(t) (V - V_{syn}).\]
 
-Esta corriente representa la influencia de la segunda neurona, denominada en este contexto como "neurona presináptica". Por su expresión, es claro que la amplitud de la interacción está determinada por el factor $g_{syn}$. Por otro lado, la interacción puede ser excitatoria o inhibitoria dependiendo del valor de la constante $V_{syn}$.
+Esta corriente representa la influencia de la segunda neurona, denominada en este contexto como "neurona presináptica". La interacción puede ser excitatoria o inhibitoria dependiendo del valor de la constante $V_{syn}$. La amplitud de la interacción está determinada por el factor $g_{syn}$.
 
-Como se mencionó anteriormente, las ecuaciones (REFERENCIA) describen una única neurona, con lo cual el sistema completo consta de 10 ecuaciones diferenciales acopladas.
+Como se mencionó anteriormente, las ecuaciones \ref{eq:ej1_ecs_difs} describen una única neurona, con lo cual el sistema completo consta de 10 ecuaciones diferenciales acopladas.
 
-Se empleó el método numérico Runge-Kutta 45 para resolver el sistema de ecuaciones diferenciales acopladas. Se examinaron dos valores para \(V_{syn}\): 0 mV y -80 mV. Las condiciones iniciales fueron un potencial de 0 \(mV\) para la primera neurona y -50 mV para la segunda. Las variables restantes se establecieron según \(x_\infty(V)\) para \(x = m, h, n\) y \(s\), evaluadas en los potenciales iniciales.
+Se resolvió numéricamente el sistema de ecuaciones diferenciales acopladas empleando el método numérico Runge-Kutta 45 con una tolerancia relativa de \textcolor{red}{????} y una tolerancia absoluta de \textcolor{red}{????}. Se examinaron dos valores para \(V_{syn}\): 0 mV correspondiente a una interacción excitatoria y -80 mV correspondiente a una inhibitoria. En cuanto a las condiciones iniciales, se estableció un potencial de 0 \(mV\) para la primera neurona y -50 mV para la segunda. Las variables restantes se establecieron según \(x_\infty(V)\) para \(x = m, h, n\) y \(s\), evaluadas en los potenciales iniciales.
 
-**Dinámica Temporal de las Neuronas:**
+La figura \ref{fig:ej1_potenciales_vs_Vsyn} ilustra los potenciales de membrana \(V_1\) y \(V_2\) de ambas neuronas a lo largo del tiempo con \(g_{syn} = 1\). Se observan spikes periódicos en ambas neuronas, sugiriendo una interacción entre ellas. Una vez atravesada una fase transitoria, estas señales presentan una periodicidad similar, indicando una sincronización. Además, las interacciones excitatorias muestran un comportamiento en fase, mientras que las inhibitorias se comportan en contrafase.
 
-La figura (REF) ilustra los potenciales \(V_1\) y \(V_2\) de ambas neuronas a lo largo del tiempo con \(g_{syn} = 1\). Se observan spikes periódicos en ambas neuronas, sugiriendo una interacción entre ellas. Estas señales presentan una periodicidad similar, indicando una sincronización. Además, las interacciones excitatorias muestran un comportamiento en fase, mientras que las inhibitorias se comportan en contrafase.
+\begin{figure}[h]
+    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_Vsyn}
+    \caption{Potenciales de membrana $V_1$ y $V_2$ de ambas neuronas en función del tiempo $t$ para $g_{syn} = 1$ y dos valores distintos de $V_{syn}$.}
+     \label{fig:ej1_potenciales_vs_Vsyn}
+\end{figure}
 
-Al variar \(g_{syn}\), se observan cambios en la dinámica neuronal. La figura (REF) muestra cómo los potenciales varían en el tiempo para diferentes valores de \(g_{syn}\), destacando un cambio en la frecuencia de los spikes con este parámetro.
+Al variar \(g_{syn}\), se observan cambios en la dinámica neuronal. La figura \ref{fig:ej1_potenciales_vs_gsyn} muestra cómo los potenciales varían en el tiempo para diferentes valores de \(g_{syn}\), destacando un cambio en la frecuencia de los spikes con este parámetro.
 
-**Tasa de Disparo y Desfasaje:**
+\begin{figure}[h]
+    \includegraphics[clip=true,width=\columnwidth]{ej1_potenciales_vs_gsyn}
+    \caption{Potenciales de membrana $V_1$ y $V_2$ de ambas neuronas en función del tiempo $t$ para $V_{syn} = 0$ y dos valores distintos de $g_{syn}$.}
+     \label{fig:ej1_potenciales_vs_gsyn}
+\end{figure}
 
-Se determinó numéricamente la tasa de disparo de las neuronas. Esta tasa se define como el número de spikes por unidad de tiempo. Luego, se calculó el desfasaje entre las neuronas, definido como la diferencia temporal entre los picos de ambos potenciales, normalizada por el período del sistema. Estos cálculos se realizaron en el estado estacionario, después de haber superado la fase transitoria. Todos estos resultados se presentan en la figura (REF).
+Para describir cuantitativamente los efectos anteriores, se determinó numéricamente la tasa de disparo y el desfasaje entre las neuronas. La tasa de disparo se define como el número de spikes por unidad de tiempo. Mientras que el desfasaje se define como la diferencia temporal entre los picos de ambos potenciales, normalizada por el período del sistema (inverso de la tasa de disparo). Estos cálculos se realizaron en el estado estacionario, después de haber superado la fase transitoria. Todos estos resultados se presentan en la figura \ref{fig:ej1_tasa_desfasaje}.
 
-En cuanto a la tasa de disparo, esta disminuye al aumentar \(g_{syn}\). Aunque intuitivamente se esperaría un aumento en la tasa con una mayor interacción, esto no sucede. Una posible explicación es que la corriente de interacción no es constante como $I_{ext}$ y solo actúa en momentos específicos.
+
+\begin{figure}[h]
+   \centering
+   \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[clip=true,width=\columnwidth]{ej1_tasa_desfasaje}
+        \label{fig:ej1_tasa}
+   \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+          \includegraphics[clip=true,width=\columnwidth]{ej1_tasa_desfasaje}
+          \label{fig:ej1_desfasaje}
+    \end{subfigure}
+    \caption{\ref{fig:ej1_tasa} Tasa de disparo de ambas neuronas y \ref{fig:ej1_desfasaje} desfasaje entre neuronas para $V_{syn} = 0$ y $V_{syn} = -80$ mV.}
+    \label{fig:ej1_tasa_desfasaje}
+\end{figure}
+
+
+
+
+En cuanto a la tasa de disparo, esta disminuye al aumentar \(g_{syn}\) y además disminuye más rápido con una interacción es existatoria. Aunque intuitivamente se esperaría un aumento en la tasa con una mayor interacción, esto no sucede. Una posible explicación es que la corriente de interacción no es constante como $I_{ext}$ y solo actúa en momentos específicos.
 
 En cuanto al desfasaje, con $g_{syn} = 0$, se observa un desfasaje distinto entre las neuronas, lo cual está ligado a la falta de interacción. Sin embargo, para $g_{syn} \neq 0$ el desfasaje parece ser independiente del parámetro, pero totalmente determinado por el tipo de interacción. En interacciones excitatorias, el desfasaje es nulo (comportamiento en fase), mientras que en interacciones inhibitorias, el desfasaje es de 0.5, lo que indica un comportamiento en contrafase.
 

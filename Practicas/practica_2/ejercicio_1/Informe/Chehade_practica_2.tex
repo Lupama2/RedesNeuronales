@@ -249,7 +249,7 @@ Se analizó un sistema compuesto por dos grupos de neuronas: excitatorias e inhi
     \tau \frac{dh_i}{dt} = -h_i + g_{ie} f_e - g_{ii} f_i + I_i,
     \end{array}\right.
 \]
-donde $f_e$ y $f_i$ representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal $f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha)$, con $\Theta(x)$ función de Heaviside. Además, $g_{\alpha \beta}$ indica el peso de acoplamiento entre la población $\alpha$ y la población $\beta$. Si el acoplamiento se dirige a la población de neuronas excitatorias ($e$), el peso es positivo. Mientras que si se dirige a la población de neuronas inhibitorias ($i$), es negativo.
+donde $f_e$ y $f_i$ representan las tasas de disparo, las cuales están relacionadas con el potencial a través de la función semilineal $f_\alpha = f_\alpha(h_\alpha) = h_\alpha\Theta(\alpha)$, con $\Theta(x)$ función de Heaviside. Además, $g_{\alpha \beta}$ indica el peso de acoplamiento entre la población $\alpha$ y la población $\beta$.
 
 A continuación se estudiará si existe una solución en el estado estacionario en la que ambas poblaciones neuronales muestren actividad distinta de cero y si tal solución es estable.
 
@@ -265,28 +265,28 @@ Para que ambas poblaciones estén activas, las tasas de disparo \(f_e\) y \(f_i\
     
 2. Los potenciales cambian en el tiempo, pero con un comportamiento periódico. En tal caso, es posible integrar las ecuaciones de la dinámica en un período y arribar a las mismas ecuaciones anteriores.
 
-Incorporando la relación entre la tasa de disparo y el potencial y teniendo en cuenta los signos de los pesos, tales ecuaciones se traducen en el sistema algebraico lineal:
+Incorporando la relación entre la tasa de disparo y el potencial, tales ecuaciones se traducen en el sistema algebraico lineal:
 
 \[ A \begin{pmatrix} h_e \\ h_i \end{pmatrix} = - \begin{pmatrix} I_e \\ I_i \end{pmatrix}, \]
 donde la matriz \(A\) se define como
-\[ A = \begin{pmatrix} |g_{ee}| - 1 & |g_{ei}| \\ |g_{ie}| & |g_{ii}| - 1 \end{pmatrix}. \]
+\[ A = \begin{pmatrix} g_{ee} - 1 & -g_{ei} \\ g_{ie} & -g_{ii} - 1 \end{pmatrix}. \]
 De aquí, se puede deducir
 \[ \begin{pmatrix} h_e \\ h_i \end{pmatrix} = - A^{-1} \begin{pmatrix} I_e \\ I_i \end{pmatrix}, \]
 con \(A^{-1}\) siendo
-\[ A^{-1} = \frac{1}{D} \begin{pmatrix} |g_{ii}| - 1 & -|g_{ei}| \\ -|g_{ie}| & |g_{ee}| - 1 \end{pmatrix} \]
+\[ A^{-1} = \frac{1}{D} \begin{pmatrix} -g_{ii} - 1 & g_{ei} \\ -g_{ie} & g_{ee} - 1 \end{pmatrix} \]
 y \(D\) es el determinante de \(A\) dado por
-\[D = (|g_{ee}| - 1)(|g_{ii}| - 1) - |g_{ie}||g_{ei}|.\]
+\[D = (g_{ee} - 1)(-g_{ii} - 1) + g_{ie}g_{ei}.\]
 
 En base a lo anterior, para garantizar actividad neuronal es necesario que se cumplan las condiciones:
 
-\[ -\frac{1}{D} [ I_e (|g_{ii}| - 1) - I_i |g_{ei}| ] > 0 \]
-\[ -\frac{1}{D} [ -I_e |g_{ie}| + I_i (|g_{ee}| - 1) ] > 0. \]
+\[ \frac{1}{D} [ I_e (g_{ii} + 1) - I_i g_{ei} ] > 0 \]
+\[ \frac{1}{D} [ I_e g_{ie} + I_i (1 - g_{ee}) ] > 0. \]
 Por otro lado, la estabilidad de esta solución requiere que la matriz jacobiana del sistema tenga una traza \(T\) negativa y un determinante positivo. Esta matriz coincide con \(\tau A\), estableciendo las condiciones
-\[ T = |g_{ee}| + |g_{ii}| - 2 < 0 \]
-\[ D = (|g_{ee}| - 1)(|g_{ii}| - 1) - |g_{ie}||g_{ei}| > 0 \]
+\[ T = g_{ee} -g_{ii} - 2 < 0 \]
+\[ D = (g_{ee} - 1)(-g_{ii} - 1) + g_{ie}g_{ei} > 0 \]
 
 \onecolumngrid
-?
+
 \section{Apéndice}
 
 A continuación se desarrolla el código utilizado en el ejercicio 1 para resolver el sistema de ecuaciones diferenciales acopladas. Este código está implementado en Python

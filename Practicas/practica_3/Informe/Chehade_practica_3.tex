@@ -148,7 +148,7 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 \begin{document}
 
 % Allows to rewrite the same title in the supplement
-\newcommand{\mytitle}{Dinámica de sistemas acoplados}
+\newcommand{\mytitle}{Estadística de trenes de spikes.}
 
 \title{\mytitle}
 
@@ -167,12 +167,32 @@ En el ámbito de la neurociencia, el estudio de la actividad eléctrica neuronal
 A partir de los datos de spikes, se determinaron los Intervalos entre Spikes (ISI, por sus siglas en inglés "Inter Spike Interval"). Estos intervalos se definen como la diferencia temporal entre spikes consecutivos. A continuación, se construyó un histograma de estos intervalos, y al normalizarlo, se obtuvo una aproximación a la distribución de intervalos \(P(ISI)\) de la neurona, como se muestra en la figura (REF).
 
 \textcolor{blue}{Figura con P(ISI) en eje y y aclarar en el caption que es una aproximación}
-Entendido. Aquí tienes una versión más concisa y sin ítems:
 
-La media de la distribución P(ISI) es de 8.496 ms, con una desviación estándar de 5.663 ms, resultando en un Coeficiente de Variabilidad (CV) de 0.667.
+
 
 La ausencia de valores en los ISIs cercanos a cero refleja el período refractario de la neurona, un intervalo post-spike durante el cual es improbable que se genere otro spike. Para valores elevados de ISI, la distribución muestra un decaimiento que se asemeja a una función exponencial decreciente. Sin embargo, en valores intermedios de ISI, se observa un comportamiento atípico con dos picos distintos, sugiriendo dos intervalos de tiempo en los que es más probable que ocurra un spike tras un evento previo.
 
+Además, se puede hacer una caracterización cuantitativa de la distribución. La media de la distribución es $\langle \mathrm{ISI} \rangle = 8.496$ ms y la desviación estándar, $\sigma_{\mathrm{ISI}} = 5.663$ ms, resultando en un Coeficiente de Variabilidad $\mathrm{CV} = \langle \mathrm{ISI} \rangle / \sigma_{\mathrm{ISI}} =  0.667$.
+
+\section{2. Distribución del número de spikes}
+
+
+
+Otro modo de caracterizar la variabilidad de la respuesta neuronal es estudiando la variación de la respuesta de la neurona ante el mismo estímulo. Para tal fin se contabilizó el número total de spikes, N, en cada realización y se estimó la probabilidad P(N) de obtener N spikes en una realización dada. Los resultados se muestran en la figura (REF). Se observa que existe una variabilidad en el número de spikes generados en respuesta al mismo estímulo. Cuantitativamente, la media de esta distribución es $\langle \mathrm{N} \rangle = 117.008$, mientras que la desviación estándar es $\sigma_{\mathrm{N}} = 13.535$. De este modo, el Factor de Fano $\mathrm{F}$ es $\mathrm{F} = \frac{\sigma_\mathrm{N}^2}{\langle \mathrm{N} \rangle} = 1.566$ 
+
+En base a los resultados obtenidos, se puede determinar si el proceso de generación de spikes es del tipo renewal. En estos procesos se cumple la relación $\mathrm{F} = \mathrm{CV}^2$. Sin embargo, en este análisis F es 1.566, mientras que $\mathrm{CV}^2$ es 0.444. Por lo tanto, el proceso no es del tipo renewal. Esta discrepancia es coherente con la naturaleza de las neuronas reales, donde los ISI no son eventos independientes ya que la neurona tiene "memoria" del comportamiento previo
+
+\section{3. Tasa de disparo}
+
+
+Una herramienta útil para caracterizar la respuesta generada es la tasa de disparo, que se define como el número de spikes por unidad de tiempo. Esta tasa puede determinarse de dos maneras: promediando las señales de respuesta o, alternativamente, promediando el número de spikes en un intervalo temporal, o "caja", de ancho \(T\) alrededor de tiempo.
+
+En este análisis, se eligió la segunda metodología. La tasa de disparo, calculada para diferentes anchos de caja \(T\), se presenta en la Figura (REF). Se observa que el histogramaes sensible al ancho \(T\) seleccionado. Con un \(T\) pequeño, como se observa en la figura (REF), la tasa refleja directamente las señales delta de los spikes. En este caso, la tasa de disparo elevada al inicio se atribuye a que los datos comienzan siempre con un spike. A medida que \(T\) se incrementa, la tasa de disparo revela información adicional, como se ve con \(T = 30\) ms en la figura (REF). Sin embargo, si \(T\) es excesivamente grande, como en la figura (REF), el comportamiento general cambia debido a la pérdida de detalle de la información. Adempas, surgen anomalías en la tasa de disparo, especialmente en los extremos temporales, ya que el ancho de la caja se vuelve comparable con la duración total del intervalo de medición.
+
+
+\section{4.}
+
+Hasta el momento, solo se ha caracterizado la respuesta neuronal. También resulta de gran interés estudiar la relación entre el estímulo presentado y la respuesta generada. 
 
 \onecolumngrid
 

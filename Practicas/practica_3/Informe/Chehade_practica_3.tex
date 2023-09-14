@@ -160,7 +160,19 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
     
 \maketitle
 
-Test
+En el ámbito de la neurociencia, el estudio de la actividad eléctrica neuronal es esencial para comprender los mecanismos subyacentes al procesamiento de la información en el cerebro. Una herramienta fundamental en este estudio es el análisis estadístico de los spikes o potenciales de acción. En este trabajo, se analizaron datos experimentales obtenidos por Ariel Rokem a través de electrodos intracelulares en un receptor acústico de un saltamontes. Estos datos comprenden la envolvente de una onda sonora presentada al animal y la respuesta neuronal correspondiente en forma de spikes. Se registraron 128 series de datos, cada una correspondiente a la respuesta neuronal ante el mismo estímulo.
+
+\section{1. Distribución de intervalos entre spikes}
+
+A partir de los datos de spikes, se determinaron los Intervalos entre Spikes (ISI, por sus siglas en inglés "Inter Spike Interval"). Estos intervalos se definen como la diferencia temporal entre spikes consecutivos. A continuación, se construyó un histograma de estos intervalos, y al normalizarlo, se obtuvo una aproximación a la distribución de intervalos \(P(ISI)\) de la neurona, como se muestra en la figura (REF).
+
+\textcolor{blue}{Figura con P(ISI) en eje y y aclarar en el caption que es una aproximación}
+Entendido. Aquí tienes una versión más concisa y sin ítems:
+
+La media de la distribución P(ISI) es de 8.496 ms, con una desviación estándar de 5.663 ms, resultando en un Coeficiente de Variabilidad (CV) de 0.667.
+
+La ausencia de valores en los ISIs cercanos a cero refleja el período refractario de la neurona, un intervalo post-spike durante el cual es improbable que se genere otro spike. Para valores elevados de ISI, la distribución muestra un decaimiento que se asemeja a una función exponencial decreciente. Sin embargo, en valores intermedios de ISI, se observa un comportamiento atípico con dos picos distintos, sugiriendo dos intervalos de tiempo en los que es más probable que ocurra un spike tras un evento previo.
+
 
 \onecolumngrid
 

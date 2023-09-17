@@ -162,34 +162,34 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 
 En el ámbito de la neurociencia, el estudio de la actividad eléctrica neuronal es esencial para comprender los mecanismos subyacentes al procesamiento de la información en el cerebro. Una herramienta fundamental en este estudio es el análisis estadístico de los spikes o potenciales de acción. En este trabajo, se analizaron datos experimentales obtenidos por Ariel Rokem a través de electrodos intracelulares en un receptor acústico de un saltamontes. Estos datos comprenden la envolvente de una onda sonora presentada al animal y la respuesta neuronal correspondiente en forma de spikes. Se registraron 128 series de datos, cada una correspondiente a la respuesta neuronal ante el mismo estímulo.
 
+\textcolor{red}{En este caso, la tasa de disparo elevada al inicio se atribuye a que los datos comienzan siempre con un spike.}
+
 \section{Distribución de intervalos entre spikes}
 
-A partir de los datos de spikes, se determinaron los Intervalos entre Spikes (ISI, por sus siglas en inglés "Inter Spike Interval"). Estos intervalos se definen como la diferencia temporal entre spikes consecutivos. A continuación, se construyó un histograma de estos intervalos, y al normalizarlo, se obtuvo una aproximación a la distribución de intervalos \(P(ISI)\) de la neurona, como se muestra en la figura (REF).
-
-\textcolor{blue}{Figura con P(ISI) en eje y y aclarar en el caption que es una aproximación}
-
 \begin{figure}[h]
-  \includegraphics[clip=true,width=\columnwidth]{ISI_histogram.png}
-  \caption{Aproximación de la distribución de intervalos entre spikes $P(ISI)$ de la neurona en función del tiempo $t$.}
+  \includegraphics[clip=true,width=0.9\columnwidth]{ISI_histogram.png}
+  \caption{Aproximación de la distribución de intervalos entre spikes P(ISI) de la neurona.}
    \label{fig:ISI_histogram}
 \end{figure}
 
-La ausencia de valores en los ISIs cercanos a cero refleja el período refractario de la neurona, un intervalo post-spike durante el cual es improbable que se genere otro spike. Para valores elevados de ISI, la distribución muestra un decaimiento que se asemeja a una función exponencial decreciente. Sin embargo, en valores intermedios de ISI, se observa un comportamiento atípico con dos picos distintos, sugiriendo dos intervalos de tiempo en los que es más probable que ocurra un spike tras un evento previo.
+A partir de los datos de spikes, se determinaron los Inter Spike Interval (ISI). Estos intervalos se definen como la diferencia temporal entre spikes consecutivos. A continuación, se construyó un histograma de estos intervalos que, normalizado, constituye una aproximación a la distribución de intervalos P(ISI) de la neurona, como se muestra en la figura \ref{fig:ISI_histogram}.
+
+La ausencia de valores cercanos a cero refleja el período refractario de la neurona, un intervalo post-spike durante el cual es improbable que se genere otro spike. Para valores elevados de ISI, la distribución muestra un decaimiento que se asemeja a una función exponencial decreciente. En valores intermedios de ISI, se observa un comportamiento atípico con un pico seguido de una meseta de valor aproximadamente constante.
 
 Además, se puede hacer una caracterización cuantitativa de la distribución. La media de la distribución es $\langle \mathrm{ISI} \rangle = 8.496$ ms y la desviación estándar, $\sigma_{\mathrm{ISI}} = 5.663$ ms, resultando en un Coeficiente de Variabilidad $\mathrm{CV} = \langle \mathrm{ISI} \rangle / \sigma_{\mathrm{ISI}} =  0.667$.
 
 \section{Distribución del número de spikes}
 
 \begin{figure}[h]
-  \includegraphics[clip=true,width=\columnwidth]{N_histogram.png}
-  \caption{Aproximación la distribución del número de spikes $P(N)$ en cada realización en función del tiempo $t$.}
+  \includegraphics[clip=true,width=0.9\columnwidth]{N_histogram.png}
+  \caption{Aproximación la distribución del número de spikes P(N) en cada realización.}
    \label{fig:N_histogram}
 \end{figure}
 
 
-Otro modo de caracterizar la variabilidad de la respuesta neuronal es estudiando la variación de la respuesta de la neurona ante el mismo estímulo. Para tal fin se contabilizó el número total de spikes, N, en cada realización y se estimó la probabilidad P(N) de obtener N spikes en una realización dada. Los resultados se muestran en la figura (REF). Se observa que existe una variabilidad en el número de spikes generados en respuesta al mismo estímulo. Cuantitativamente, la media de esta distribución es $\langle \mathrm{N} \rangle = 117.008$, mientras que la desviación estándar es $\sigma_{\mathrm{N}} = 13.535$. De este modo, el Factor de Fano $\mathrm{F}$ es $\mathrm{F} = \frac{\sigma_\mathrm{N}^2}{\langle \mathrm{N} \rangle} = 1.566$ 
+Otro modo de caracterizar la variabilidad de la respuesta neuronal es estudiando la variación de la respuesta de la neurona ante el mismo estímulo. Para tal fin se contabilizó el número total de spikes, N, en cada realización y se estimó la probabilidad P(N) de obtener N spikes en una realización dada, mediante un histograma. Los resultados se muestran en la figura \ref{fig:N_histogram}. Se observa que existe una variabilidad en el número de spikes generados en respuesta al mismo estímulo. Cuantitativamente, la media de esta distribución es $\langle \mathrm{N} \rangle = 117$, mientras que la desviación estándar es $\sigma_{\mathrm{N}} = 13.5$. De este modo, el Factor de Fano $\mathrm{F}$ es $\mathrm{F} =  \sigma_\mathrm{N}^2/\langle \mathrm{N} \rangle = 1.6$.
 
-En base a los resultados obtenidos, se puede determinar si el proceso de generación de spikes es del tipo renewal. En estos procesos se cumple la relación $\mathrm{F} = \mathrm{CV}^2$. Sin embargo, en este análisis F es 1.566, mientras que $\mathrm{CV}^2$ es 0.444. Por lo tanto, el proceso no es del tipo renewal. Esta discrepancia es coherente con la naturaleza de las neuronas reales, donde los ISI no son eventos independientes ya que la neurona tiene "memoria" del comportamiento previo
+En base a los resultados obtenidos, se puede determinar si el proceso de generación de spikes es del tipo renewal. En estos procesos se cumple la relación $\mathrm{F} = \mathrm{CV}^2$. Sin embargo, en este análisis F es 1.6, mientras que $\mathrm{CV}^2$ es 0.444. Por lo tanto, el proceso no es del tipo renewal. Esta discrepancia es coherente con la naturaleza de las neuronas reales, donde los ISI no son eventos independientes ya que la neurona tiene "memoria" del comportamiento previo.
 
 \section{Tasa de disparo}
 
@@ -212,23 +212,22 @@ En base a los resultados obtenidos, se puede determinar si el proceso de generac
       \includegraphics[width=\textwidth]{tasa_de_disparo_1000.png}
       \caption{\label{fig:tasa_de_disparo_1000}}
   \end{subfigure}
-     \caption{Three simple graphs}
+     \caption{Tasa de disparo para un ancho de caja de T = 2, 300, 1000 ms, correspondientes a las figuras \ref{fig:tasa_de_disparo_2}, \ref{fig:tasa_de_disparo_300} y \ref{fig:tasa_de_disparo_1000}, respectivamente.}
      \label{fig:tasa_de_disparo}
 \end{figure}
 
 
-Una herramienta útil para caracterizar la respuesta generada es la tasa de disparo, que se define como el número de spikes por unidad de tiempo. Esta tasa puede determinarse de dos maneras: promediando las señales de respuesta o, alternativamente, promediando el número de spikes en un intervalo temporal, o "caja", de ancho \(T\) alrededor de tiempo.
+Una herramienta útil para caracterizar la respuesta generada es la tasa de disparo, que se define como el número de spikes por unidad de tiempo. Esta tasa puede determinarse de dos maneras: promediando las señales de respuesta o, alternativamente, promediando el número de spikes en un intervalo temporal, o ''caja'', de ancho \(T\) para cada tiempo.
 
-En este análisis, se eligió la segunda metodología. La tasa de disparo, calculada para diferentes anchos de caja \(T\), se presenta en la Figura (REF). Se observa que el histogramaes sensible al ancho \(T\) seleccionado. Con un \(T\) pequeño, como se observa en la figura (REF), la tasa refleja directamente las señales delta de los spikes. En este caso, la tasa de disparo elevada al inicio se atribuye a que los datos comienzan siempre con un spike. A medida que \(T\) se incrementa, la tasa de disparo revela información adicional, como se ve con \(T = 30\) ms en la figura (REF). Sin embargo, si \(T\) es excesivamente grande, como en la figura (REF), el comportamiento general cambia debido a la pérdida de detalle de la información. Adempas, surgen anomalías en la tasa de disparo, especialmente en los extremos temporales, 
-ya que el ancho de la caja se vuelve comparable con la duración total del intervalo de medición.
-
+En este análisis, se eligió la segunda metodología. La tasa de disparo, calculada para diferentes anchos de caja \(T\), se presenta en la figura \ref{fig:tasa_de_disparo}. Se observa que el histograma es es sensible al ancho \(T\) seleccionado. Con un \(T\) pequeño, como se observa en la figura \ref{fig:tasa_de_disparo_2}, la tasa refleja directamente las señales delta de los spikes. A medida que \(T\) se incrementa, la tasa de disparo revela información adicional, como se ve con \(T = 30\) ms en la figura \ref{fig:tasa_de_disparo_300}. Además, se observa un efecto de borde en los extremos temporales: la tasa decae notoriamente. Si \(T\) es excesivamente grande, como en la figura \ref{fig:tasa_de_disparo_1000}, el comportamiento general cambia debido a la pérdida de detalle de la información. Además, los efectos de borde se vuelven más notorios ya que el ancho de la caja se vuelve comparable con la duración total del intervalo de medición.
 
 
-\section{}
+
+\section{Relación lineal entre estímulo y respuesta}
 
 
 %Creo subfigura
-\begin{figure}
+\begin{figure}[h]
   \centering
   \begin{subfigure}[b]{0.3\textwidth}
       \centering
@@ -241,27 +240,28 @@ ya que el ancho de la caja se vuelve comparable con la duración total del inter
       \includegraphics[width=\textwidth]{STA_parcial.png}
       \caption{\label{fig:STA_parcial}}
   \end{subfigure}
-     \caption{Three simple graphs}
+     \caption{Spike-Trigger-Average (STA) multiplicado por la constante de normalización $\sigma^2$ en función del tiempo $t$. En la figura \ref{fig:STA_total}, se grafica para todo el intervalo temporal, mientras que en la figura \ref{fig:STA_parcial} se grafica una ampliación para un intervalo menor.}
      \label{fig:STA}
 \end{figure}
 
-Hasta el momento, solo se ha caracterizado la respuesta neuronal. También resulta de gran interés estudiar la relación entre el estímulo presentado y la respuesta generada. Para entender tal relación, podemos considerar una descripción lineal de la respuesta en función del estímulo. Esta relación se puede expresar como:
+\begin{figure}[h]
+  \includegraphics[clip=true,width=0.9\columnwidth]{r_vs_r_model.png}
+  \caption{Respuesta}
+   \label{fig:r_vs_r_model}
+\end{figure}
 
-$r(t) = r_0 + \int_0^\infty d\tau D(\tau) S(t - \tau)$
+Hasta el momento, solo se ha caracterizado la respuesta neuronal. También resulta de gran interés estudiar la relación entre el estímulo presentado y la respuesta generada. Para entender tal relación, se puede considerar una descripción lineal de la respuesta en función del estímulo. Esta relación se puede expresar como:
 
+\[r(t) = r_0 + \int_0^\infty d\tau D(\tau) S(t - \tau)\]
 donde \( r_0 \) es una constante y \( D(t) \) es el kernel lineal.
 
-
-Asumiendo que el valor medio del estímulo $S(t)$ es nulo, se tiene que $r_0$ es el valor medio de la tasa de disparo, 50 Hz en este caso. Al despreciar el tiempo de autocorrelación del estímulo, el kernel lineal adquiere la forma
-
+Asumiendo que el valor medio del estímulo $S(t)$ es nulo, se obtiene que $r_0$ es el valor medio de la tasa de disparo, 116 Hz en este caso. Al despreciar el tiempo de autocorrelación del estímulo, el kernel lineal adquiere la forma
 \[D(t) = \frac{1}{\sigma^2} \sum_{SPIKE} S(t_{SPIKE} - t).\]
+Aquí, \( \sigma \) es una constante de normalización y la sumatoria se realiza sobre todos los spikes de todas las realizaciones. Con estas aproximaciones, el kernel lineal se conoce como Spike-Trigger-Average (STA).
 
-Aquí, la suma se realiza sobre todos los spikes de todas las realizaciones y \( \alpha \) es una constante de normalización. Con estas aproximaciones, el kernel lineal se conoce como Spike-Trigger-Average (STA).
+El STA se presenta en función del tiempo en la figura \ref{fig:STA}. En esta figura, se destaca un pico para tiempos cortos alrededor de \( T_0 = 8 \) ms. Este sería el tiempo para el cual la neurona tiene mayor probabilidad de generar un spike tras un estímulo. Para tiempos más largos, el STA decae y muestra variabilidad, lo cual indica que la sensibilidad de la neurona disminuye con el tiempo.
 
-
-El STA se presenta en función del tiempo en la Figura (REF). En esta figura, se destaca un pico para tiempos cortos alrededor de \( T0 = 10 \) ms. Esto sugiere que, tras un estímulo, la neurona tiene una mayor probabilidad de generar un spike en los siguientes 10 ms. Para tiempos más largos, el STA muestra variabilidad, lo que indica que la sensibilidad de la neurona disminuye para estos tiempos.
-
-Basándonos en el STA, se derivó \( r(t) \) del modelo lineal, a partir de ahora llamado \( r_{model}(t) \). Para calcular esta integral, se consideró una discretización y se evaluó \( r(t) \) a partir de un tiempo \( T_0 \). Además, la integral se limitó entre 0 y \( T0 \) para evitar la variabilidad en \( D(t) \) para tiempos más largos. Aunque sería necesario conocer la constante \( \sigma \) para comparar \( r(t) \) con \( r_{model}(t) \), podemos comparar \( r(t) - r_0 \) con \( r_{model}(t) \) adimensionalizado arbitrariamente por \( 10^9 \). Esta comparación se muestra en la Figura (REF) para un rango limitado de tiempo usando una ventana temporal de 100 ms para calcular \( r(t) \). Se puede observar que el modelo captura adecuadamente el comportamiento de la respuesta, incluidos los picos y las depresiones, aunque presenta variabilidad.
+Basándose en el STA, se calculó la respuesta  \( r_{model}(t) \) del modelo lineal. Para calcular la integral, se discretizó el tiempo y se limitó el intervalo de integración entre 0 y \( T_0 \) para evitar la variabilidad en \( D(t) \) para tiempos más largos. Consecuentemente, como se tiene la señal estímulo a partir de $t = 0$, se evaluó la respuesta a partir del tiempo \( t = T_0 \). Aunque sería necesario conocer la constante \( \sigma \) para comparar \( r(t) \) con \( r_{model}(t) \), se puede comparar \( r(t) - r_0 \) con \( r_{model}(t) \) adimensionalizado arbitrariamente por \( 10^9 \). Esta comparación se muestra en la figura \ref{fig:r_vs_r_model} para un rango limitado de tiempo usando una ventana temporal de 100 ms para calcular \( r(t) \). Se puede observar que el modelo captura adecuadamente el comportamiento de la respuesta, incluidos los picos y las depresiones, aunque presenta variabilidad.
 
 
 

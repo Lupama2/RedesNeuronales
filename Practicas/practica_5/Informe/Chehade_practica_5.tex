@@ -143,6 +143,7 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 
 \end{comment}
 
+\
 
 
 \begin{document}
@@ -157,6 +158,9 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
     \small \textit{Redes Neuronales, Instituto Balseiro, CNEA-UNCuyo, Bariloche, Argentina, 2023} \\}
     
 \maketitle
+
+
+
 
 \section*{Ejercicio 1: NO CONTROLADO RESPECTO A NOTION}
 
@@ -183,7 +187,9 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
        \label{fig:three graphs}
 \end{figure}
 
-Se ha entrenado una red neuronal lineal de una sola capa con cuatro entradas y una salida de manera no supervisada. Los datos de entrada presentan una distribución gaussiana con una matriz de correlación, representada por $\Sigma$.
+Se entrenó de manera no supervisadauna red neuronal lineal de una sola capa con cuatro entradas y una salida. Los datos de entrada presentan una distribución gaussiana con matriz de correlación $\Sigma$
+
+
 
 \[
 \Sigma = \begin{bmatrix}
@@ -193,21 +199,19 @@ Se ha entrenado una red neuronal lineal de una sola capa con cuatro entradas y u
 1 & 1 & 1 & 2 \\
 \end{bmatrix}
 \]
+El autovector asociado al mayor autovalor de $\Sigma$ es $vec{v} = \frac{1}{2}(1, 1, 1, 1)$. 
 
-El autovector asociado al mayor autovalor de $\Sigma$ se denota como $\mathbf{v}_{\text{vec}} = \frac{1}{2}(0.5, 0.5, 0.5, 0.5)$. A partir de un vector de pesos inicial $\mathbf{w}_{\text{vec}} = (w_1, w_2, w_3, w_4)$, donde cada componente $w_j$ adopta un valor aleatorio no mayor a 0.01, se ha aplicado la regla de Oja:
 
+A partir de un vector de pesos inicial $vec{w} = (w_1, w_2, w_3, w_4)$, donde cada componente $w_j$ adopta un valor aleatorio no mayor a $0.01$, se aplicó la regla de Oja:
 \[
 \Delta w_j = \eta ( \xi_j - V w_j )
 \]
+Aquí, $\eta$ representa la tasa de aprendizaje, $V$ es la salida de la red y $\xi_j$ es la componente $j$ del dato de entrada $\xi$. Bajo estas condiciones, se espera que el vector de pesos $vec{w}$ tienda al autovector $vec{v}$.
 
-Aquí, $\eta$ representa la tasa de aprendizaje, $V$ es la salida de la red y $\xi_j$ es la componente $j$ del dato de entrada $\xi$.
 
-Bajo estas condiciones, se anticipa que el vector de pesos $\mathbf{w}_{\text{vec}}$ alinee con el autovector $\mathbf{v}_{\text{vec}}$.
+En la figura [1], se ilustra la evolución del módulo de los pesos, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$, para $\eta = 0.001$. Tras un período transitorio, se observa una tendencia en las componentes de $vec{w}$ hacia el valor $0.5$, indicando convergencia hacia $\vec{v}$. Dependiendo de las condiciones iniciales, el vector $\vec{w}$ apunta en la dirección $+\vec{v}$ o $-\vec{v}$. Debido a esto se graficó el módulo de cada componente. Posteriormente, en estado estacionario, los pesos continúan modificándose. Por ello, en la figura [2], se procesan los datos anteriores realizando un promedio en cada paso de tiempo de los 200 pasos adyacentes. Esto resulta en un comportamiento más suave y una reducción notable en las variaciones de $\Delta w_j$ de hasta un orden de magnitud.
 
-En la Figura [1], se ilustra la evolución del módulo de los pesos, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$, para un $\eta = 0.001$. Tras un período transitorio, se observa una tendencia en las componentes de $\mathbf{w}_{\text{vec}}$ hacia el valor 0.5, sugiriendo una convergencia hacia $\mathbf{v}_{\text{vec}}$ o $-\mathbf{v}_{\text{vec}}$. Dada esta dualidad, resulta esencial considerar el módulo. Posteriormente, en estado estacionario, las modificaciones en los pesos persisten. Por ello, en la Figura [2], se realiza un promedio de valores en varios pasos de tiempo, tomando 200 puntos adyacentes, revelando un comportamiento más suave y una reducción notable en las variaciones de $\Delta w_j$.
-
-Por otro lado, en la Figura [3], con un valor de $\eta = 0.01$, el sistema muestra una convergencia más lenta y variaciones $\Delta w_j$ de mayor magnitud. Se concluye que existe un valor límite para $\eta$, más allá del cual el sistema tiende a diverger.
-
+Por otro lado, en la figura [3], se evolucionó el sistema con $\eta = 0.01$. El sistema muestra una convergencia más rápida y variaciones $\Delta w_j$ de mayor magnitud. Además, se determinó que existe un valor superior límite para $\eta$, más allá del cual el sistema tiende a diverger.
 
 \section*{Ejercicio 2}
 

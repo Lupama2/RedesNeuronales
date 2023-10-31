@@ -162,28 +162,6 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 
 \section*{Ejercicio 1: NO CONTROLADO RESPECTO A NOTION}
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{ej1_fig1.png}
-        \caption{\label{fig:ej1_fig1}}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{ej1_fig2.png}
-        \caption{\label{fig:ej1_fig2}}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{ej1_fig3.png}
-        \caption{\label{fig:ej1_fig3}}
-    \end{subfigure}
-       \caption{Evolución del módulo de los pesos $w_j$, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$ durante el entrenamiento de la red neuronal. En \ref{sub@fig:ej1_fig1} se empleó una tasa de aprendizaje de $\eta = 0.001$. En \ref{sub@fig:ej1_fig2} se empleó la misma tasa de aprendizaje pero además se procesaron los datos promediando en cada paso de tiempo sobre los 200 pasos adyacentes. En \ref{sub@fig:ej1_fig3} se empleó una tasa de aprendizaje de $\eta = 0.01$.}
-       \label{fig:three graphs}
-\end{figure}
 
 Se entrenó de manera no supervisadauna red neuronal lineal de una sola capa con cuatro entradas y una salida. Los datos de entrada presentan una distribución gaussiana con matriz de correlación $\Sigma$
 
@@ -213,22 +191,122 @@ Por último, en la figura \ref{fig:ej1_fig3}, se evolucionó el sistema con $\et
 
 \section*{Ejercicio 2}
 
-Se entrenpo una red neuronal con dos neuronas de entrada y 10 de salida empleando el algoritmo de Kohonen. Las neuronas de salida están dispuestas sobre una línea.
-
-Los datos de entrada se generaron con la distribución
-\[P (\xi) = \]
-
-Se comenzó con pesos pequeños y se actualizaron mediante el algoritmo
-\[\delta_w{j} = \]
-
-
-donde $\eta$ es la tasa de aprendizaje y $\Gamma(i, i^*)$ es la función de vecindad dada por
-\[\Gamma(i, i^*) = \]
-
-
-
 
 \onecolumngrid
+
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej1_fig1.png}
+      \caption{\label{fig:ej1_fig1}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej1_fig2.png}
+      \caption{\label{fig:ej1_fig2}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej1_fig3.png}
+      \caption{\label{fig:ej1_fig3}}
+  \end{subfigure}
+     \caption{Evolución del módulo de los pesos $w_j$, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$ durante el entrenamiento de la red neuronal. En \ref{sub@fig:ej1_fig1} se empleó una tasa de aprendizaje de $\eta = 0.001$. En \ref{sub@fig:ej1_fig2} se empleó la misma tasa de aprendizaje pero además se procesaron los datos promediando en cada paso de tiempo sobre los 200 pasos adyacentes. En \ref{sub@fig:ej1_fig3} se empleó una tasa de aprendizaje de $\eta = 0.01$.}
+     \label{fig:three graphs}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig1_1.png}
+      \caption{\label{fig:ej2_fig1_1}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig1_2.png}
+      \caption{\label{fig:ej2_fig1_2}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig1_3.png}
+      \caption{\label{fig:ej2_fig1_3}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig1_4.png}
+      \caption{\label{fig:ej2_fig1_4}}
+  \end{subfigure}
+     \caption{$\sigma = 1$, $\eta = 0.1$}
+     \label{fig:ej2_fig1}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig2_1.png}
+      \caption{\label{fig:ej2_fig2_1}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig2_2.png}
+      \caption{\label{fig:ej2_fig2_2}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig2_3.png}
+      \caption{\label{fig:ej2_fig2_3}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig2_4.png}
+      \caption{\label{fig:ej2_fig2_4}}
+  \end{subfigure}
+     \caption{$\sigma = 2$, $\eta = 0.1$}
+     \label{fig:ej2_fig2}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig3_1.png}
+      \caption{\label{fig:ej2_fig3_1}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig3_2.png}
+      \caption{\label{fig:ej2_fig3_2}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig3_3.png}
+      \caption{\label{fig:ej2_fig3_3}}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.24\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{ej2_fig3_4.png}
+      \caption{\label{fig:ej2_fig3_4}}
+  \end{subfigure}
+     \caption{$\sigma = 1$, $\eta = 0.01$}
+     \label{fig:ej2_fig3}
+\end{figure}
+
+
 
 \section*{Apéndice}
 A continuación se desarrolla el código empleado durante este trabajo implementado en Python.

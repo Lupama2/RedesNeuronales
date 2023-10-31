@@ -190,6 +190,29 @@ En la figura \ref{fig:ej1_fig1}, se ilustra la evolución del módulo de los pes
 
 Por último, en la figura \ref{fig:ej1_fig3}, se evolucionó el sistema con $\eta = 0.01$. El sistema muestra una convergencia más rápida y variaciones $\Delta w_j$ de mayor magnitud. Además, se determinó que existe un valor superior límite para $\eta$, más allá del cual el sistema tiende a diverger.
 
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ej1_fig1.png}
+        \caption{\label{fig:ej1_fig1}}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ej1_fig2.png}
+        \caption{\label{fig:ej1_fig2}}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ej1_fig3.png}
+        \caption{\label{fig:ej1_fig3}}
+    \end{subfigure}
+       \caption{Evolución del módulo de los pesos $w_j$, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$ durante el entrenamiento de la red neuronal. En \ref{sub@fig:ej1_fig1} se empleó una tasa de aprendizaje de $\eta = 0.001$. En \ref{sub@fig:ej1_fig2} se empleó la misma tasa de aprendizaje pero además se procesaron los datos promediando en cada paso de tiempo sobre los 200 pasos adyacentes. En \ref{sub@fig:ej1_fig3} se empleó una tasa de aprendizaje de $\eta = 0.01$.}
+       \label{fig:three graphs}
+  \end{figure}
+
 \section*{Ejercicio 2}
 
 Se entrenó una red neuronal de Kohonen con dos neuronas de entrada y diez neuronas de salida alineadas en una línea. La red se alimenta mediante una distribución de entrada definida como:
@@ -218,41 +241,14 @@ Se observaron diferentes comportamientos al variar los parámetros \(\eta\) y \(
     \item \(\eta = 0.1\) y \(\sigma = 1\): Inicialmente los pesos \(\vec{w}_i\) son cercanos entre sí. Luego se desplazan hacia las regiones donde \(P(\vec{\xi})\) es no nula. Finalmente, los pesos se organizan sobre la región, organizados de acuerdo a la disposición de las neuronas sobre la línea.
 
     \item \(\eta = 0.1\) y \(\sigma = 2\): En este caso, los pesos se mueven más juntos en comparación con el caso anterior debido a un mayor valor de \(\sigma\), que incrementa el efecto de la función de vecindad. Esto se puede entender más claramente en el caso extremo en el que $\sigma \rightarrow \infty$. En tal caso, $\Gamma \rightarrow 1$ y todas las neuronas se actualizan en la misma magnitud hacia la posición del dato de entrada $\vec{\xi}$. En cuanto al estado final, incluso con una gran cantidad de pasos de entrenamiento no se llega al mismo estado que antes. Una forma de resolver este problema podría ser aprovechando el comportamiento visto en el caso anterior y disminuir progresivamente $\sigma$ a medida que se realiza el entrenamiento.
-    
-
     \item \(\eta = 0.01\) y \(\sigma = 1\): Con una tasa de aprendizaje reducida, la evolución es más lenta. Además, los pesos muestran variaciones menores durante el entrenamiento. A pesar de la lentitud, con suficientes iteraciones el sistema converge a la misma condición que el primer caso.
-
 \end{enumerate}
-
 El estudio sugiere que la elección de \(\eta\) y \(\sigma\) es crucial. Un \(\eta\) más bajo lleva a una convergencia más lenta pero con menor ruido, mientras que un \(\sigma\) más alto promueve una adaptación global pero menos detallada de los pesos. 
+
 
 
 \onecolumngrid
 
-
-
-\begin{figure}
-  \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{ej1_fig1.png}
-      \caption{\label{fig:ej1_fig1}}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{ej1_fig2.png}
-      \caption{\label{fig:ej1_fig2}}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{ej1_fig3.png}
-      \caption{\label{fig:ej1_fig3}}
-  \end{subfigure}
-     \caption{Evolución del módulo de los pesos $w_j$, las modificaciones $\Delta w_j$ y la diferencia entre $w_j$ y $v_j$ durante el entrenamiento de la red neuronal. En \ref{sub@fig:ej1_fig1} se empleó una tasa de aprendizaje de $\eta = 0.001$. En \ref{sub@fig:ej1_fig2} se empleó la misma tasa de aprendizaje pero además se procesaron los datos promediando en cada paso de tiempo sobre los 200 pasos adyacentes. En \ref{sub@fig:ej1_fig3} se empleó una tasa de aprendizaje de $\eta = 0.01$.}
-     \label{fig:three graphs}
-\end{figure}
 
 \begin{figure}
   \centering
@@ -331,6 +327,7 @@ El estudio sugiere que la elección de \(\eta\) y \(\sigma\) es crucial. Un \(\e
      \label{fig:ej2_fig1}
 \end{figure}
 
+
 \newpage
 
 \section*{Apéndice}
@@ -340,13 +337,264 @@ A continuación se desarrolla el código empleado durante este trabajo implement
 
 
 \begin{lstlisting}[language=Python]
-  #Import libraries
-  import numpy as np
-  import matplotlib
-  import matplotlib.pyplot as plt
-  import tensorflow as tf
-  
-  
+    
+    ### Ejercicio 1
+    #Import libraries
+    import numpy as np
+    import matplotlib
+    import matplotlib.pyplot as plt
+    
+    #Parameters
+    w_ini_max = 0.01 #valor maximo del peso inicial
+
+    #Def correlation matrix
+    C = np.array([[2, 1, 1, 1],
+                  [1, 2, 1, 1],
+                  [1, 1, 2, 1],
+                  [1, 1, 1, 2]])
+    
+    C_12 = np.array([[1.309, 0.309, 0.309, 0.309],
+                    [0.309, 1.309, 0.309, 0.309],
+                    [0.309, 0.309, 1.309, 0.309],
+                    [0.309, 0.309, 0.309, 1.309]])
+    
+    #Calculo los autovalores y autovectores de C
+    eigvals, eigvecs = np.linalg.eig(C)
+    #Calculo el autovector con el mayor autovalor
+    eigvec_max = eigvecs[:, np.argmax(eigvals)]
+    #Imprimo
+    print('El autovector con el mayor autovalor es: ', eigvec_max)
+    
+    def ejemplo():
+        #Genero 4 nros con distribucion normal
+        z = np.random.randn(4)
+        #Multiplico por C_12
+        x = np.dot(C_12, z)
+        return x
+    
+    def inicializacion_pesos():
+        #Genero 4 nros con distribucion uniforme
+        w = np.random.uniform(-w_ini_max, w_ini_max, 4)
+        return w
+        
+    
+    def actualizacion_pesos(w, eta):
+        #Genero un ejemplo
+        xi = ejemplo()
+        #Calculo la salida
+        V = np.dot(w, xi)
+        #Calculo delta_w
+        delta_w = eta*V*(xi - V*w)
+        return w + delta_w
+    
+    def train(N_train, eta):
+        #Genero la matriz de pesos
+        w_matrix = np.zeros([N_train, 4])
+        #Genero los pesos iniciales
+        w = inicializacion_pesos()
+        w_matrix[0] = w
+        #Entreno N_train pasos
+        for i in range(1,N_train):
+            w = actualizacion_pesos(w, eta)
+            w_matrix[i] = w
+        return w_matrix
+    
+    #Entreno una red
+    N_train = 5000
+    
+    #Promedio w_matrix y delta_w para cada iindice en una caja de ancho M con np.convolve
+    def plt_w(M, eta):
+        w_matrix = train(N_train, eta)
+        #Calculo los delta_w
+        delta_w = w_matrix[1:] - w_matrix[:-1]
+    
+        w_matrix_mean = np.empty([N_train - M + 1, 4])
+        delta_w_mean = np.empty([N_train - M, 4])
+        for i in range(4):
+            w_matrix_mean[:, i] = np.convolve(w_matrix[:, i], np.ones(M)/M, mode='valid')
+            delta_w_mean[:, i] = np.convolve(delta_w[:, i], np.ones(M)/M, mode='valid')
+    
+        # Grafico los pasos en el tiempo y en otra grafica, los cambios delta w_j entre pasos
+        fig, ax = plt.subplots(3, 1, figsize=(9.5, 5.5), sharex=True)
+        fig.subplots_adjust(hspace=0.1)
+    
+        ax[0].plot(np.abs(w_matrix_mean))
+        # ax[0].set_xlabel('Pasos')
+        ax[0].set_ylabel('$|w_j|$')
+        ax[0].labels = ['1', '2', '3', '4']
+        #Grafico las labels arriba fuera del grafico
+        ax[0].legend(ax[0].labels, loc='upper center', bbox_to_anchor=(0.5, 1.3), ncol=4)
+        ax[0].set_ylim(0, 1)
+        # ax[0].set_xscale("log")
+        ax[0].grid()
+    
+        ax[1].plot(delta_w_mean)
+        # ax[1].set_xlabel('Pasos')
+        ax[1].set_ylabel('$\Delta w_j$')
+        ax[1].labels = ['1', '2', '3', '4']
+        # ax[1].legend(ax[1].labels)
+        ax[1].grid()
+    
+        ax[2].plot(np.abs(np.abs(w_matrix_mean) - np.abs(eigvec_max)))
+        ax[2].set_xlabel('Pasos')
+        ax[2].set_ylabel('Error')
+        ax[2].labels = ['1', '2', '3', '4']
+        #Grafico las labels arriba fuera del grafico
+        # ax[2].legend(ax[2].labels)
+        ax[2].set_yscale("log")
+        ax[2].grid()
+    
+        plt.show()
+    
+    #Hago graficos para el informe
+    plt_w(1, 0.001)
+    plt.savefig('Informe/ej1_fig1.png', bbox_inches='tight', dpi=300)
+    
+    plt_w(200, 0.001)
+    plt.savefig('Informe/ej1_fig2.png', bbox_inches='tight', dpi=300)
+    
+    plt_w(1, 0.01)
+    plt.savefig('Informe/ej1_fig3.png', bbox_inches='tight', dpi=300)
+    
+    # ## Ejercicio 2
+    #Def parametros globales
+    r1 = 0.9
+    r2 = 1.1
+    N = 2
+    M = 10
+    w_ini_max = 0.1
+    
+    #Def seed
+    np.random.seed(0)
+    
+    #Genero pares de nros aleatorios (x,y) con distribucion uniforme sobre un circulo
+    def generar_datos(n):
+        r_array = np.empty([n,2])
+        contador = 0
+        while(contador < n):
+            #Genero nros aleatorios con distribucion uniforme entre 0 y 1
+            x = (np.random.rand()*2 - 1)*r2
+            y = (np.random.rand()*2 - 1)*r2
+            #Me fijo si pertenece al anillo
+            r = np.sqrt(x**2 + y**2)
+            theta = np.arctan2(y,x)
+            if r1 < r < r2 and 0 < theta < np.pi:
+                r_array[contador] = np.array([x,y])
+                contador += 1
+        return r_array
+    
+    def Vecindad(i,i_star,sigma):
+        return np.exp(-((i-i_star)**2)/(2*sigma**2))
+    
+    def algoritmo_de_Kohonen(w, x, sigma, eta):
+        #Calculo la neurona ganadora
+        i_star = np.argmin(np.linalg.norm(w-x,axis=1))
+        #Actualizo los pesos
+        delta_w = eta*Vecindad(np.arange(M),i_star,sigma).reshape(M,1)*(x-w)
+        w += delta_w
+        return w
+    
+    def entrenamiento_Kohonen(N_train, sigma, eta):
+        #Inicializo pesos de la red
+        w = np.random.rand(M,N)*w_ini_max
+        w_matriz = np.empty([N_train,M,N])
+        #Genero los datos
+        r_array = generar_datos(N_train)
+        #Entreno la red
+        for i in range(N_train):
+            w = algoritmo_de_Kohonen(w, r_array[i], sigma, eta)
+            #Guardo el valor
+            w_matriz[i] = w
+        return w_matriz
+    
+    def plt_entrenamiento_Kohonen(N_train, sigma, eta):
+        #Redef seed
+        np.random.seed(0)
+        w_matriz = entrenamiento_Kohonen(N_train, sigma, eta)
+    
+        #Graph los pesos en el tiempo
+        fig, ax = plt.subplots(figsize = (5,4))
+        color_vec = ["tab:red", "tab:blue", "tab:green", "tab:orange", "tab:purple", "tab:brown", "tab:pink", "tab:gray", "tab:olive", "tab:cyan"]
+    
+        #Grafico los pesos
+        for i in range(M):
+            ax.plot(w_matriz[0:,i,0],w_matriz[0:,i,1],'o-',color=color_vec[i], alpha = 0.1)
+        for i in range(M):
+            #Pinto de otro color el ultimo punto
+            ax.plot(w_matriz[-1,i,0],w_matriz[-1,i,1],'o-',color="k", alpha = 1)
+            ax.text(w_matriz[-1,i,0],w_matriz[-1,i,1],str(i),color="k",alpha=1)
+    
+        #Grafico un anillo entre r1 y r2 con theta entre 0 y pi
+        theta = np.linspace(0,np.pi,100)
+        ax.plot(r1*np.cos(theta),r1*np.sin(theta),'k')
+        ax.plot(r2*np.cos(theta),r2*np.sin(theta),'k')
+        ax.plot([-r2,-r1],[0,0],'k'); ax.plot([r1,r2],[0,0],'k')
+        ax.set_xlim(-1.2,1.2)
+        ax.set_ylim(-0.1,1.2)
+    
+        #Quito los tickslabels
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+        ax.set_xticks([])
+        ax.set_yticks([])
+        #Agrego arriba a la izquierda el valor de N_train
+        ax.text(-1.1,1.05,'$\mathrm{N_{train}}$ = '+str(N_train),color="k",alpha=1)
+    
+        plt.show()
+        return
+    
+    #Guardo graficos particulares y los guardo
+    # plt_entrenamiento_Kohonen(N_train, sigma, eta)
+    
+    #Figura 1
+    sigma = 1
+    eta = 0.1
+    
+    plt_entrenamiento_Kohonen(10, sigma, eta)
+    plt.savefig('Informe/ej2_fig1_1.png', bbox_inches='tight', dpi=300)
+    
+    #Descomentar las siguientes lineas para hacer la variacion de N_train, eta y sigma
+    # plt_entrenamiento_Kohonen(200, sigma, eta)
+    # plt.savefig('Informe/ej2_fig1_2.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(750, sigma, eta)
+    # plt.savefig('Informe/ej2_fig1_3.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(1750, sigma, eta)
+    # plt.savefig('Informe/ej2_fig1_4.png', bbox_inches='tight', dpi=300)
+    
+    # #Figura 2
+    # sigma = 2
+    # eta = 0.1
+    
+    # plt_entrenamiento_Kohonen(10, sigma, eta)
+    # plt.savefig('Informe/ej2_fig2_1.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(200, sigma, eta)
+    # plt.savefig('Informe/ej2_fig2_2.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(750, sigma, eta)
+    # plt.savefig('Informe/ej2_fig2_3.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(50000, sigma, eta)
+    # plt.savefig('Informe/ej2_fig2_4.png', bbox_inches='tight', dpi=300)
+    
+    # #Figura 3
+    # sigma = 1
+    # eta = 0.01
+    
+    # plt_entrenamiento_Kohonen(10, sigma, eta)
+    # plt.savefig('Informe/ej2_fig3_1.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(200, sigma, eta)
+    # plt.savefig('Informe/ej2_fig3_2.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(750, sigma, eta)
+    # plt.savefig('Informe/ej2_fig3_3.png', bbox_inches='tight', dpi=300)
+    
+    # plt_entrenamiento_Kohonen(6000, sigma, eta)
+    # plt.savefig('Informe/ej2_fig3_4.png', bbox_inches='tight', dpi=300)
+        
 
 \end{lstlisting}
 

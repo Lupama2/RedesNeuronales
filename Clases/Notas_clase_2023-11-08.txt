@@ -1,0 +1,59 @@
+CAP 10 del libro "Deep Learning"
+----
+1
+Recurrente: en ppio todas conectadas con todas y tienen una dinámica temporal
+
+----
+2
+Las redes feed-forward no tienen memoria de lo que ocurre antes o después
+
+---
+3
+En la notación de todas las clases, theta son los pesos w
+----
+4
+No se puede aplicar back-propagation porque la salida tiene una dinámica temporal
+----
+6
+x es la entrada e y es la salida deseada (ambos vectores). L es la pérdida y o es la salida.
+h_i(t-1) = U*x(t-1) + W*h_2(t-2)
+El problema pasa a ser encontrar las matrices U, V y W tal que el error es mínimo, donde el error se tiene que sumar sobre todos los tiempos. A diferencia de las redes recurrentes que vimos previamente, antes nos interesaba ir hacia un punto fijo, pero ahora me interesa ir hacia una secuencia de datos.
+----
+7
+Todavía no hicimos mención a cómo inicializar
+Por ej: se usa para clasificar electrocardiogramas
+----
+captioning de imágenes es x un vector (imagen) y la salida una descripción de lo que significa la imagen
+----
+13
+b es un umbral
+
+----
+Esta ec. me relaciona el error a tiempo t+1 con el error a tiempo t. Entonces, si conozco el error a tiempo final, puedo ir recorriendo para atrás retropropagando los errores.
+----
+Tau es el nro de pasos de tiempo
+----
+La arquitectura particular mostrada en la figura anterior permite una aproximación que permite acelerar los cálculos. Se basa en "suponer que la red se estaba aproximando de manera correcta", de modo que o(t-1) e y(t-1) son muy parecidos, aproximadamente iguales.
+Test time es cuando se quiere testear la performance
+---
+En imágenes esto tiene más sentido porque hay correlaciones de un pixel a izquierda y derecha
+----
+Encoder-Decorder: entradas y salidas son de alta dimensión y en el medio hay alguna capa de baja dimensionalidad. Se puede pensar que c es una codificación de la entrada. En esta implementación particular de Encoder-Decoder se está intentando predecir una secuencia, pero tmb se podría implementar directamente en redes feed-forward
+----
+Se podría poner más de un delay, habiendo dos escalas de tiempo que están interactuando
+----
+Cuando se ponen muchas capas aparece el problema de los "gradientes que se anulan o explotan). Esto se debe a que en back-propagation, si f' es muy pequeña, las modificaciones de los pesos tienden a hacerse cada vez más pequeñas a medida que voy para atrás en la red. O, si los pesos son muy grandes, las modificaciones son grandes y los pesos explotan
+
+----
+LSTM: está programado en keras
+
+
+----
+Capas convolucionales: capas del tipo sistema visual en las cuales se aplica un filtro.
+average pooling: se toma el valor máximo de cada unidad
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+----
+1
+Plasticidad sináptica
+Los pesos se modifican de acuerdo a la regla de Hebbs
+No solo hay cambios en la sinapsis sino tmb en la facilidad en la que se realizan esos cambios
+En los 4 items
+1. Lo veremos hoy
+2. Repaso (sirve para el final)
+3 y 4. Quizás los veamos
+
+----
+2
+La neurogénesis, si existe, está reducida en adultos. Sin embargo, una persona es capaz de aprender nuevas cosas
+
+----
+3
+Orden 0 de cómo funciona una sinapsis (repaso de las primeras clases)
+----
+4
+Orden 1 de cómo funciona una sinapsis: detalle de los procesos bioquímicos que ocurren.
+Hay info. que va hacia atrás de la postsináptica a la presináptica. Se have via "mensajeros retrógrados". Seguramente esto esté relacionada a la generación de neurotransmisores en el núcleo de la célula.
+----
+5
+Se estudian todos los órdenes espaciales. Cada imagen es una ampliación de la siguiente
+----
+8
+Experimento típico de condicionamiento ((clásico)). Supongamos que una neurona recibe inputs del sistema visual y del auditivo. Cuando veo una pelota, la neurona se activa y me hago la imagen mental de la pelota. Cuando escucho la pelota, la neurona se activa débilmente porque no asocio la pelota con el ruido. Ahora, si veo y escucho la pelota, la neurona se activa y, con las repeticiones, la conexión entre la neurona auditiva y la otra se refuerzan. Luego, solo con el ruido voy a hacerme la imagen mental de la pelota.
+Este mecanismo también permite funcionar como memoria.
+
+----
+9
+Se encontró evidencia experimental del fenómeno.
+
+----
+10
+En el eje x: tiempo
+En el eje y: amplitud del potencial postsináptico para dado potencial presináptico
+.Se mide en una sección del hipocampo y en el lado opuesto
+
+A los 45' se envía un "tetani" (tren de spikes de alta frecuencia)
+Luego mido devuelta
+Repito el envío de "tetani"
+Cada vez se vuelve más fuerte la amplitud del potencial postsináptico. Luego sin poner ningún tetani, la conexión se sigue volviendo más fuerte. Por esto se llama "potencial de largo término".
+Luego se hace lo mismo del otro lado del hipocampo y se observa el mismo comportamiento.
+
+Debido a la gran estimulación, la sinapsis se reforzó y esto duró del orden de horas
+
+----
+11
+Todavía se sigue estudiando cómo se refuerza la sinapsis
+
+----
+13
+¿Cuál es el fenómeno bioquímico que sustenta este comportamiento? ¿Esto afecta al comportamiento?
+
+----
+14
+El Ca2+ le informa que "algo está pasando"
+
+----
+
+Ocurren fenómenos en varias escalas de tiempo
+ms: potencial de acción
+s: fenómenos de refuerzo de los receptores inducido por el mecanismo de "fosfolidación"
+minutes: modificaciones morfológicas. La neurona aumenta el nro de ((ramas))
+hours: se agregan receptores a las nuevas ramas
+
+Quizás las neuronas no aumentan en cantidad, pero sí cambian su morfología
+----
+23
+¿Lo medido hasta ahora era solo algo bioquímico? ¿Tenía algo que ver con el comportamiento?
+
+----
+24
+Tales receptores se bloqueaban con una droga
+
+Se demuestra que el aprendizaje y el LDA están fuertemente correlacionados (no necesariamente causa-consecuencia porque podrían ocurrir otros procesos)
+----
+29
+Lo visto hasta ahora son fenómenos de largo término. Pero tmb se observan fenómenos de corto término
+----
+30
+B: la sinapsis se vuelve más débil a mayor frecuencia debido a que que no hay suficientes neurotransmisores.
+
+----
+32
+Aumentamos la complejidad: ¿y si la dependencia no está solo en la tasa de disparo?
+¿Tendrá efecto el tiempo preciso al que ocurren los spikes? Esto es, si el spike presináptico ocurre antes o después de la rta en las postsináptica. Resulta que sí hay un efecto
+----
+34
+Hacer un modelo de lo que está ocurriendo es extremadamente complicado
+Todavía se sigue intentando entender cómo modelar esto y cuál es el sustento bioquímico de estos resultados
+----
+
+Nuevo Power-Point
+
+----
+Reverberaciones (NO SÉ QUÉ SON)
+
+----
+
+
+----
+
+
+----
+
+
+----
+
+
+----
+
+
+----
+
+
+----
+
+
+----
+
+
+----

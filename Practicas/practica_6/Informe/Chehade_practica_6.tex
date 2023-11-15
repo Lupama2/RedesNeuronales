@@ -158,6 +158,91 @@ We acknowledge advice from Jessie Zhang and Harry Pirie to produce Fig.\ \ref{fi
 \maketitle
 
 
+\section*{Ejercicio 1}
+
+
+
+Se calculó la dinámica de una red de Hopfield sin ruido con regla de actualización secuencial y paralela para tamaños de red \( N = 500, 1000, 2000, 4000 \) y para valores de \( \alpha = \frac{p}{N} = 0.12, 0.14, 0.16, 0.18 \). En cada red, se realizaron \( p \) simulaciones donde se tomó como condición inicial cada uno de los patrones aleatorios y se iteró la dinámica hasta converger a un punto fijo \( s_i^{\mu} \). La convergencia fue evaluada mediante la comparación de la configuración de la red en un tiempo grande \( t \) con su estado en \( t+1 \).
+
+En base a los resultados, se calculó la fracción de simulaciones convergidas (\( f_{conv} \)) para la iteración secuencial y paralela variando $N$ y $\alpha$. Los resultados se resumen en las tablas \ref{tab:ej1_f_conv_secuencial} y \ref{tab:ej1_f_conv_paralela}.
+
+% Tabla de f_conv para iteración secuencial
+\begin{table}[h]
+  \centering
+  \caption{Fracción de simulaciones convergidas (\( f_{conv} \)) para iteración secuencial}
+  \label{tab:ej1_f_conv_secuencial}
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \( N \) \ \( \alpha \) & 0.12   & 0.14   & 0.16   & 0.18   \\ \hline
+  500            & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\ \hline
+  1000           & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\ \hline
+  2000           & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\ \hline
+  4000           & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\ \hline
+  \end{tabular}
+\end{table}
+  
+% Tabla de f_conv para iteración paralela
+\begin{table}[h]
+  \centering
+  \caption{Fracción de simulaciones convergidas (\( f_{conv} \)) para iteración paralela}
+  \label{tab:ej1_f_conv_paralela}
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  \( N \) \ \( \alpha \) & 0.12   & 0.14   & 0.16   & 0.18   \\ \hline
+  500            & 0.9667 & 0.9143 & 0.7125 & 0.5000 \\ \hline
+  1000           & 0.9333 & 0.8643 & 0.4062 & 0.1111 \\ \hline
+  2000           & 0.9625 & 0.7071 & 0.2437 & 0.0306 \\ \hline
+  4000           & 0.8875 & 0.5250 & 0.0688 & 0.0000 \\ \hline
+  \end{tabular}
+\end{table}
+  
+
+Se observó una completa convergencia $f_{conv} = 1$ en la dinámica secuencial para todos los valores de \( N \) y \( \alpha \). En contraste, la dinámica paralela mostró una disminución progresiva en la convergencia con el aumento de \( \alpha \) y el tamaño de la red \( N \).
+
+Además, para la dinámica secuencial, se calculó el overlap \( m^{\mu} \) definido como
+
+\[ m^{\mu} = \frac{1}{N} \sum_{i=1}^{N} s_i^{\mu} \xi_i^{\mu} \]
+
+Este overlap mide la similitud entre el punto fijo \( s_i^{\mu} \) y el patrón original \( \xi_i^{\mu} \). Teóricamente, se espera que para \( \alpha = 0 \), el overlap inicie en 1 y decrezca lentamente con el incremento de \( \alpha \), alcanzando un valor de aproximadamente $0.97$ para \( \alpha = 0.14 \). A partir de este punto, se espera una caída abrupta del overlap.
+
+Los histogramas de overlap para diferentes condiciones iniciales confirmaron parcialmente las expectativas teóricas, como se observa en la figura \ref{fig:ej1_histograma}
+\begin{itemize}
+  \item Para \( \alpha < 0.14 \), el overlap es cercano a 1, indicando que la red es capaz de recordar de manera correcta los patrones.
+  \item Para \( \alpha = 0.14 \), el overlap es menor pero cercano a 1.
+  \item Para \( \alpha > 0.14 \), el overlap disminuye significativamente.
+\end{itemize}
+
+Sin embargo, no se observó una caída abrupta a cero después de \( \alpha = 0.14 \), sino a valores alrededor de $0.3$, lo cual puede atribuirse a la presencia de estados metaestables en la red.
+
+
+\begin{figure}[h]
+  \includegraphics[clip=true,width=\columnwidth]{../ej1_histograma.png}
+  \caption{}
+   \label{fig:ej1_histograma}
+\end{figure}
+
+\section*{Ejercicio 2}
+
+Se simuló la dinámica de una red de Hopfield en presencia de ruido, utilizando la regla de actualización estocástica:
+
+\[ Pr(s_i(t + 1) = \pm1) = \frac{\exp(\pm\beta h_i(t))}{\exp(\beta h_i(t)) + \exp(-\beta h_i(t))} \]
+
+donde \( h_i(t) = \sum_{j=1}^{N} w_{ij}s_j(t) \). Para esta simulación, se empleó dimensión \( N = 4000 \) y \( p = 40 \) patrones, resultando en un valor de \( \alpha = p/N = 0.01 \), cercano a cero. Se exploraron temperaturas \( T = \frac{1}{\beta} \) variando desde $0.1$ hasta $2$ en incrementos de $0.1$.
+
+Se realizaron $p$ simulaciones empleando como condición inicial cada uno de los patrones \( \xi_i^\mu \). La regla de actualización se aplicó iterativamente diez veces en cada sitio de la red. A partir de estas iteraciones, se calculó el overlap medio, definido como:
+\[ m^\mu = \frac{1}{N} \sum_{j=1}^{N} \langle S_j(t) \rangle \xi_j^\mu, \]
+donde el promedio \( \langle \ldots \rangle \) se calculó sobre la dinámica.
+
+En la figura \ref{fig:ej2_overlap_vs_T} se graficó el overlap medio en función de la temperatura. Los resultados muestran el comportamiento esperado con un overlap medio \( m^\mu \) igual a 1 para \( T = 0 \), de acuerdo con los resultados del ejercicio previo. A medida que la temperatura aumenta, el overlap medio disminuye progresivamente, lo cual está de acuerdo con la teoría. No obstante, en lugar de anularse completamente a \( T = 1 \), el overlap medio mantuvo un valor residual y continuó disminuyendo para temperaturas superiores. Esto puede deberse al tamaño finito del sistema.
+
+\begin{figure}[h]
+  \includegraphics[clip=true,width=\columnwidth]{../ej2_overlap_vs_T.png}
+  \caption{}
+   \label{fig:ej2_overlap_vs_T}
+\end{figure}
+
+
+
 
 
 \onecolumngrid

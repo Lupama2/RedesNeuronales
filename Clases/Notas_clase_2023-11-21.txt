@@ -1,0 +1,118 @@
+La clase fue "meramente informativa".
+
+-----
+2
+Partes importantes: pupila (agujero por el que entra la luz), cornea + cristalino (sistema de lentes flexibles), retina (multicapa de células fotosensibles). El ojo se conecta con el sistema nervioso mediante el nervio óptico y por allí tmb pasa el flujo sanguíneo. La retina consume mucha energía
+
+
+-----
+3
+Fovea: donde impactan los rayos de luz donde nosotros prestamos atención. Todo lo que está alrededor está representado en las demás regiones
+
+-----
+4
+En la región por la que ingresa el nervio óptico es el punto ciego del ojo.
+
+-----
+5
+Perceptual "filling-in": dentro de su representación del mundo visual, cognitivamente uno ve una ((imagen)) entera. El cerebro se encarga, de acuerdo al contexto, rellenar lo que no está.
+
+-----
+8
+La orden de achicar o agrandar la pupila está dada por el cerebro luego del procesamiento de la luz
+
+-----
+
+Con el procesamiento lateral se rompe el esquema feed-forward
+
+-----
+
+En las células fotoreceptores no hay disparos ((de señal eléctrica))
+Foto-transducción: paso de señal lumínima a corriente
+Los conos vienen en distintos tipos y permiten distinguir entre distintos canales cromáticos. Los bastones no. Como los bastones se emplean en baja intensidad de luz, se ve en escala de grises.
+-----
+
+El cero está en la fovea
+
+-----
+
+Cambia el tipo de procesamiento dependiendo de la región de la retina en la que nos encontramos.
+La fovea no es buena para ver en la noche debido a la baja concentración de bastones
+-----
+
+El foveal pit se da para evitar la distorsión debido al scattering en las celular de arriba
+-----
+En lugar de estar en los valores típicos de -60 mV (potencial de reposo), está a un potencial más positivo de -30 mV debido.
+
+-----
+La rodopsina es una protenína que "están dando vueltas" por la membrana. Dentro de la proteína hay una ((molécula)) llamada retinal.
+
+-----
+La luz afecta a esa molécula, que la hace pasar de trans a cis, haciendo que la proteína "se active" y camibe su comportamiento. Una vez ocurrido esto courre una cascada bioquímica que finaliza con la desaparición de las moléculas cGPM y cerrando los canales de Na+. Hay mecanismos de reconversión para que luego de un tiempo todo vuelva a la normalidada (-30 mV)
+
+-----
+¿Por qué sucede la especificidad entre HI, HII y HIII? No se sabe
+
+-----
+En la terminal del fotoreceptos se forma una juntura complicada con las células horizontales y la bipolar. El mecanismo que ocurre para el comportamiento de la juntura no está del todo claro. Además, la célula horizontal tmb envía señales a los fotoreceptores.
+
+-----
+En la periferia, muchos fotoreceptores convergen en una única célcula bipolar y muchas células bipolares convergen en una única célula ganglionar
+En la fovea ocurre lo contrario, ((divergiendo la información))
+
+-----
+En neto, la info. de 125 millones de fotoreceptores pasa a 1 millón de axones con info. en el nervio óptico.
+La especie "de moda" para estudiar la corteza visual fue cambiando en el tiempo
+-----
+El circuito retinal
+Veremos en distintos trabajos cómo es la salida de la retina y cómo se realiza su procesamiento.
+
+Granit y Hartline midieron los patrones eléctricos extracelulares y los estudiaron. No queda del todo claro si se debía a una única célula o a muchas.
+
+-----
+El concepto de "campo receptivo" nació en el campo de estudio de los sistemas sensoriales: si se estimula un dedo, hay una/s determinada/s neurona/s que se activan y otras no. Resulta que en el mundo visual ocurre lo mismo. 
+
+-----
+Resulta que la estructura es del tipo "center/surround".
+La célula dispara si:
+1. Hay luz en el centro
+2. Hay oscuridad en el surround
+No dispara si:
+3. Hay luz en el centro y en surround
+Cuando se estimula el centro hay disparos pero cuando se estimula el "surround" hay inhibición, ...
+
+
+-----
+Esto permite codificar, no la intensidad de luz en sí, sino el contraste.
+
+-----
+En "Campo receptivo. Respuesta temporal"
+Realmente no vemos imágenes estáticas, sino que hay fenómenos temporales. Se puede suponer que se separa la parte temporal de la espacial. Entonces, podemos asumir que hay un campo receptivo espacial y otro temporal.
+
+-----
+Las conexiones se organizan de forma de que no halla info. redundante. ((Yo entiendo que la idea es que cada célcula ganglionar define su región en el campo visual y se hace de modo de no pisarse con la región de otra célcula ganglionar).
+
+-----
+
+
+-----
+
+
+-----
+
+
+-----
+
+
+-----
+
+
+-----
+
+
+-----
+
+
+-----
+
+

@@ -1,34 +1,33 @@
 La clase fue "meramente informativa".
+Fui sacando algunas notas y poniéndolas directamente en el Power Point
 
 -----
 2
-Partes importantes: pupila (agujero por el que entra la luz), cornea + cristalino (sistema de lentes flexibles), retina (multicapa de células fotosensibles). El ojo se conecta con el sistema nervioso mediante el nervio óptico y por allí tmb pasa el flujo sanguíneo. La retina consume mucha energía
 
 
 -----
 3
-Fovea: donde impactan los rayos de luz donde nosotros prestamos atención. Todo lo que está alrededor está representado en las demás regiones
+
 
 -----
 4
-En la región por la que ingresa el nervio óptico es el punto ciego del ojo.
+
 
 -----
 5
-Perceptual "filling-in": dentro de su representación del mundo visual, cognitivamente uno ve una ((imagen)) entera. El cerebro se encarga, de acuerdo al contexto, rellenar lo que no está.
+
 
 -----
 8
-La orden de achicar o agrandar la pupila está dada por el cerebro luego del procesamiento de la luz
+
 
 -----
 
-Con el procesamiento lateral se rompe el esquema feed-forward
+
 
 -----
 
-En las células fotoreceptores no hay disparos ((de señal eléctrica))
-Foto-transducción: paso de señal lumínima a corriente
+
 Los conos vienen en distintos tipos y permiten distinguir entre distintos canales cromáticos. Los bastones no. Como los bastones se emplean en baja intensidad de luz, se ve en escala de grises.
 -----
 

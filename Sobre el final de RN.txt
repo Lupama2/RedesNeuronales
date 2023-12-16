@@ -1,0 +1,22 @@
+Sobre RN
+
+No vi: SPV "clase-svm-2023" 
+No le presté mucha atención a la clase 2 ni a las clases de plasticidad "plasticity-.-2022", ni al power point de Redes Recurrentes "clase-rnn-2022" ni al power point de reinforcement learning "clase-reinforcement-learning-2023"
+
+Repasar las clases:
+*La que no fui a inicios de cuatri
+*Dinámica neuronal "Sistemas interactuantes"
+
+Cosas clave que aún no entiendo:
+*Cómo se justifica la entrada y salida de iones según si el potencial es mayor o menor al de Nerst
+*Cómo se justifica el comportamiento de un potencial de acción a partir de el modelo de Hodgkin-Huxley
+
+
+Repasar las prácticas!
+
+Terminar final 2021
+
+
+DUDAS
+* Es importante recordar todos los aspectos biológicos de la clase 2?
+* ¿Cuándo un punto fijo es estable? para el caso discreto y para el continuo? Creo que esto está discutido en FISCOM
